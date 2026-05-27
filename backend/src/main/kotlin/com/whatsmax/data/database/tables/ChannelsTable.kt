@@ -61,7 +61,6 @@ object ChannelCommentsTable : Table("channel_comments") {
     override val primaryKey = PrimaryKey(id)
 }
 
-/** Учёт уникальных просмотров постов каналов. */
 object ChannelMessageViewsTable : Table("channel_message_views") {
     val messageId = uuid("message_id").references(ChannelMessagesTable.id)
     val userId    = varchar("user_id", 128).references(UsersTable.uid)

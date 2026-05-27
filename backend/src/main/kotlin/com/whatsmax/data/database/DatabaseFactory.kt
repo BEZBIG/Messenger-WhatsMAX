@@ -70,7 +70,6 @@ object DatabaseFactory {
         }
     }
 
-    /** Выполняет блок в suspend-транзакции на IO-диспетчере. */
     suspend fun <T> dbQuery(block: suspend () -> T): T =
         newSuspendedTransaction(Dispatchers.IO) { block() }
 }

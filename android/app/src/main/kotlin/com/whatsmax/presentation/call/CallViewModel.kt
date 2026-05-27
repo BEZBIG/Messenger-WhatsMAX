@@ -1,9 +1,4 @@
-/**
- * presentation/call/CallViewModel.kt
- * ViewModel WebRTC-звонка: инициация, сигнализация через WebSocket
- * (CALL_OFFER / CALL_ANSWER / CALL_ICE), управление микрофоном/камерой/
- * динамиком. По завершении пишет в чат сообщение типа "call".
- */
+/** ViewModel WebRTC-звонка: сигнализация, управление камерой/микрофоном, запись в чат */
 package com.whatsmax.presentation.call
 
 import android.media.AudioManager
@@ -39,7 +34,7 @@ data class CallUiState(
     val isCameraOff: Boolean = false,
     val isSpeakerOn: Boolean = false,
     val isIncoming: Boolean = false,
-    val isFrontCamera: Boolean = true      // true = фронтальная, false = задняя
+    val isFrontCamera: Boolean = true
 )
 
 @HiltViewModel
@@ -58,7 +53,6 @@ class CallViewModel @Inject constructor(
     private var toneGenerator: ToneGenerator? = null
     private var seconds = 0
 
-    // Данные текущего звонка
     private var currentUserId: String = ""
     private var peerUserId: String = ""
     private var callId: String = ""
@@ -76,10 +70,8 @@ class CallViewModel @Inject constructor(
             startRingTone()
 
             viewModelScope.launch {
-                // Получаем uid текущего пользователя
                 currentUserId = authRepository.getCurrentFirebaseUid() ?: ""
 
-                // Получаем данные чата чтобы узнать uid и имя собеседника
                 val chatResult = chatRepository.getChatById(chatId)
                 if (chatResult is Result.Success) {
                     val peer = chatResult.data.members.firstOrNull { it.userId != currentUserId }
@@ -89,7 +81,6 @@ class CallViewModel @Inject constructor(
                     }
                 }
 
-                // Отправляем CALL_OFFER через WebSocket
                 if (currentUserId.isNotEmpty() && peerUserId.isNotEmpty()) {
                     callId = UUID.randomUUID().toString()
                     val signal = CallSignalDto(
@@ -104,7 +95,6 @@ class CallViewModel @Inject constructor(
                 }
             }
 
-            // Таймаут 30 секунд — нет ответа
             ringJob = viewModelScope.launch {
                 delay(30_000)
                 if (_uiState.value.callStatus == CallStatus.CALLING) {
@@ -171,7 +161,6 @@ class CallViewModel @Inject constructor(
     fun endCall() {
         stopRingTone()
         durationJob?.cancel()
-        // Сообщение в чат о завершении звонка с длительностью
         val label = buildString {
             append(if (currentIsVideo) "Видеозвонок завершён" else "Звонок завершён")
             if (seconds > 0) append(" · ${_uiState.value.duration}")
@@ -181,7 +170,6 @@ class CallViewModel @Inject constructor(
         _uiState.update { it.copy(callStatus = CallStatus.ENDED) }
     }
 
-    /** Отправляет сообщение типа "call" в текущий чат */
     private fun sendCallMessage(content: String) {
         if (currentChatId.isEmpty()) return
         viewModelScope.launch {
@@ -189,7 +177,6 @@ class CallViewModel @Inject constructor(
         }
     }
 
-    /** Отправляет CALL_END через WebSocket собеседнику */
     private fun sendWsCallEnd() {
         if (currentUserId.isEmpty() || peerUserId.isEmpty()) return
         try {
@@ -205,7 +192,6 @@ class CallViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        // Завершаем звонок без сообщения (onCleared вызывается при выходе из экрана)
         stopRingTone()
         durationJob?.cancel()
         sendWsCallEnd()

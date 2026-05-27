@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 
-/** Composable экрана регистрации: имя, username, email, пароль, подтверждение. */
 @Composable
 fun RegisterScreen(
     onRegisterSuccess: () -> Unit,

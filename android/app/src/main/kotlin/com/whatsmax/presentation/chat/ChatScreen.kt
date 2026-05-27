@@ -49,7 +49,6 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.ui.input.pointer.pointerInput
 import java.io.File
 
-/** Composable экрана чата: история, ввод, медиа, голосовые, реакции. */
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun ChatScreen(
@@ -328,7 +327,6 @@ fun ChatScreen(
     }
 }
 
-/** Пузырь сообщения с поддержкой медиа, голосовых и реакций. */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun MessageBubble(
@@ -471,7 +469,6 @@ private fun MessageBubble(
     }
 }
 
-/** Панель ввода сообщения с микрофоном и прикреплением. */
 @Composable
 private fun MessageInputBar(
     text: String, onTextChange: (String) -> Unit,
@@ -546,7 +543,6 @@ private fun MessageInputBar(
     }
 }
 
-/** Панель ответа на сообщение. */
 @Composable
 private fun ReplyBar(message: Message, onCancel: () -> Unit) {
     Surface(color = MaterialTheme.colorScheme.surfaceVariant) {
@@ -570,7 +566,6 @@ private fun ReplyBar(message: Message, onCancel: () -> Unit) {
     }
 }
 
-/** Контекстное меню сообщения с быстрыми реакциями. */
 @Composable
 private fun MessageContextMenu(
     message: Message, isOwn: Boolean,
@@ -636,7 +631,6 @@ private fun QuickReactionRow(onReact: (String) -> Unit, onMore: () -> Unit) {
     }
 }
 
-/** Компактный пикер реакций по двойному тапу. */
 @Composable
 private fun ReactionPickerDialog(
     onReact: (String) -> Unit,
@@ -661,7 +655,6 @@ private fun ReactionPickerDialog(
     }
 }
 
-/** Разделитель даты между сообщениями. */
 @Composable
 private fun DateSeparator(dateStr: String, serverToday: String) {
     Box(

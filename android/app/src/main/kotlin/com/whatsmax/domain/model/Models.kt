@@ -1,11 +1,5 @@
-/**
- * domain/model/Models.kt
- * Доменные модели — чистые data-классы без зависимостей от фреймворков.
- * Используются в Use Cases и ViewModel.
- */
+/** Доменные модели приложения. */
 package com.whatsmax.domain.model
-
-// ─── Пользователь ────────────────────────────────────────────────────────────
 
 data class User(
     val uid: String,
@@ -18,8 +12,6 @@ data class User(
     val isOnline: Boolean = false,
     val lastSeen: String = ""
 )
-
-// ─── Чат ──────────────────────────────────────────────────────────────────────
 
 data class Chat(
     val id: String,
@@ -45,8 +37,6 @@ data class ChatMember(
     val isOnline: Boolean = false
 )
 
-// ─── Сообщение ────────────────────────────────────────────────────────────────
-
 data class Message(
     val id: String,
     val chatId: String,
@@ -70,8 +60,6 @@ data class Message(
 )
 
 enum class MessageType { TEXT, IMAGE, FILE, AUDIO, VIDEO, VOICE, CALL }
-
-// ─── Канал ────────────────────────────────────────────────────────────────────
 
 data class Channel(
     val id: String,
@@ -114,8 +102,6 @@ data class ChannelComment(
     val createdAt: String = ""
 )
 
-// ─── Файл ─────────────────────────────────────────────────────────────────────
-
 data class FileInfo(
     val id: String,
     val originalName: String,
@@ -123,10 +109,8 @@ data class FileInfo(
     val sizeBytes: Long,
     val url: String,
     val uploadedAt: String = "",
-    val thumbUrl: String? = null   // относительный путь к превью, null если нет
+    val thumbUrl: String? = null
 )
-
-// ─── WebSocket события ────────────────────────────────────────────────────────
 
 data class WsEvent(val type: String, val payload: String)
 
@@ -140,8 +124,6 @@ data class CallSignal(
     val sdp: String? = null,
     val candidate: String? = null
 )
-
-// ─── Результат операции ───────────────────────────────────────────────────────
 
 sealed class Result<out T> {
     data class Success<T>(val data: T) : Result<T>()

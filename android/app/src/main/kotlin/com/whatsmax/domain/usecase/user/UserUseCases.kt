@@ -1,8 +1,4 @@
-/**
- * domain/usecase/user/UserUseCases.kt
- * Use Cases для работы с профилями пользователей: поиск, получение,
- * обновление.
- */
+/** Use Cases профилей пользователей: поиск, получение, обновление. */
 package com.whatsmax.domain.usecase.user
 
 import com.whatsmax.domain.model.Result

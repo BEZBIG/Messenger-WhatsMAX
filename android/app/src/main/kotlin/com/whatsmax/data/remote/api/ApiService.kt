@@ -1,8 +1,4 @@
-/**
- * data/remote/api/ApiService.kt
- * Retrofit-интерфейс для всего REST API. Все методы suspend.
- * Авторизация: Bearer Firebase ID Token в Authorization.
- */
+/** Retrofit-интерфейс REST API. */
 package com.whatsmax.data.remote.api
 
 import com.whatsmax.data.remote.dto.*
@@ -11,8 +7,6 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
-
-    // ─── Auth ─────────────────────────────────────────────────────────────
 
     @POST("auth/register")
     suspend fun registerUser(@Body request: CreateUserRequest): Response<UserDto>
@@ -25,8 +19,6 @@ interface ApiService {
 
     @POST("auth/sign-out")
     suspend fun signOutOnServer(): Response<Map<String, String>>
-
-    // ─── Users ────────────────────────────────────────────────────────────
 
     @GET("users/search")
     suspend fun searchUsers(
@@ -42,8 +34,6 @@ interface ApiService {
 
     @POST("users/me/fcm-token")
     suspend fun updateFcmToken(@Body body: Map<String, String>): Response<Map<String, String>>
-
-    // ─── Chats ────────────────────────────────────────────────────────────
 
     @POST("chats")
     suspend fun createChat(@Body request: CreateChatRequest): Response<ChatDto>
@@ -78,8 +68,6 @@ interface ApiService {
     @DELETE("chats/{id}")
     suspend fun deleteChat(@Path("id") id: String): Response<Unit>
 
-    // ─── Messages ─────────────────────────────────────────────────────────
-
     @GET("chats/{chatId}/messages")
     suspend fun getMessages(
         @Path("chatId") chatId: String,
@@ -111,8 +99,6 @@ interface ApiService {
         @Path("chatId") chatId: String,
         @Path("msgId") msgId: String
     ): Response<Unit>
-
-    // ─── Channels ─────────────────────────────────────────────────────────
 
     @POST("channels")
     suspend fun createChannel(@Body request: CreateChannelRequest): Response<ChannelDto>
@@ -172,9 +158,6 @@ interface ApiService {
         @Body request: PostCommentRequest
     ): Response<ChannelCommentDto>
 
-    // ─── Reactions ────────────────────────────────────────────────────────
-    // type: "message" | "channel_post" | "comment"
-
     @GET("reactions/{type}/{entityId}")
     suspend fun getReactions(
         @Path("type") type: String,
@@ -193,8 +176,6 @@ interface ApiService {
         @Path("type") type: String,
         @Path("entityId") entityId: String
     ): Response<ReactionSummaryDto>
-
-    // ─── Files ────────────────────────────────────────────────────────────
 
     @Multipart
     @POST("files/upload")

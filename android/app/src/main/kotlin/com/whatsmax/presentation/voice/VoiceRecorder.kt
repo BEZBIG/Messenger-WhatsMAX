@@ -1,8 +1,4 @@
-/**
- * presentation/voice/VoiceRecorder.kt
- * Запись голосовых (Telegram-style): AAC в .m4a с расчётом waveform
- * на 100 точек из MediaRecorder.maxAmplitude.
- */
+/** Запись голосовых: AAC .m4a + waveform из MediaRecorder. */
 package com.whatsmax.presentation.voice
 
 import android.content.Context
@@ -52,7 +48,6 @@ class VoiceRecorder(private val context: Context) {
         recorder = rec
         startedAt = SystemClock.elapsedRealtime()
 
-        // Сэмплер амплитуды
         samplerJob = scope.launch {
             while (isActive) {
                 val amp = runCatching { recorder?.maxAmplitude ?: 0 }.getOrDefault(0)
@@ -62,7 +57,6 @@ class VoiceRecorder(private val context: Context) {
         }
     }
 
-    /** Останавливает запись и возвращает результат. После вызова инстанс непригоден. */
     fun stop(): VoiceRecordResult? {
         val rec = recorder ?: return null
         val file = outputFile ?: return null
@@ -78,7 +72,6 @@ class VoiceRecorder(private val context: Context) {
         )
     }
 
-    /** Отмена записи: удаляет файл, ничего не возвращает. */
     fun cancel() {
         samplerJob?.cancel()
         val rec = recorder
@@ -89,7 +82,6 @@ class VoiceRecorder(private val context: Context) {
         outputFile = null
     }
 
-    /** Свернуть произвольное число сэмплов в ровно 100 точек 0..100 (по среднему в бакете). */
     private fun normalize(raw: List<Int>): List<Int> {
         if (raw.isEmpty()) return List(WAVEFORM_POINTS) { 0 }
         val max = (raw.max().coerceAtLeast(1)).toFloat()

@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 
-/** Composable экрана входа: email, пароль, кнопка входа, ссылка на регистрацию. */
 @Composable
 fun LoginScreen(
     onLoginSuccess: () -> Unit,

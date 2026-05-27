@@ -17,7 +17,6 @@ import com.whatsmax.presentation.home.HomeScreen
 import com.whatsmax.presentation.profile.ProfileScreen
 import com.whatsmax.presentation.profile.UserProfileScreen
 
-/** Имена маршрутов навигации. */
 object Routes {
     const val LOGIN           = "login"
     const val REGISTER        = "register"
@@ -36,7 +35,6 @@ object Routes {
     fun userProfile(userId: String) = "user/$userId"
 }
 
-/** Корневой NavHost со всеми экранами. */
 @Composable
 fun WhatsMAXNavHost(
     navController: NavHostController,

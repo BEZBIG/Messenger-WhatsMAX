@@ -1,9 +1,4 @@
-/**
- * presentation/call/CallScreen.kt
- * Экран аудио/видеозвонка. В CALLING/RINGING — full-screen своя камера
- * с оверлеем управления; в ONGOING — видео собеседника во весь экран
- * плюс перетаскиваемое PiP-окошко своей камеры.
- */
+/** Экран аудио/видеозвонка с превью камеры и PiP-окошком */
 package com.whatsmax.presentation.call
 
 import android.Manifest
@@ -51,7 +46,6 @@ fun CallScreen(
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
 
-    // Разрешение камеры
     var hasCameraPermission by remember {
         mutableStateOf(
             ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
@@ -76,17 +70,12 @@ fun CallScreen(
     val bgColor = if (isVideo) Color(0xFF0D1B2A) else Color(0xFF1A1A2E)
     val isOngoing = state.callStatus == CallStatus.ONGOING
 
-    // Позиция PiP-окошка (своя камера, только при ONGOING)
     var pipOffset by remember { mutableStateOf(Offset(16f, 120f)) }
 
     Box(modifier = Modifier.fillMaxSize().background(bgColor)) {
 
-        // ══════════════════════════════════════════════════════════════
-        // ФОНОВЫЙ СЛОЙ — зависит от статуса звонка
-        // ══════════════════════════════════════════════════════════════
         if (isVideo) {
             if (!isOngoing) {
-                // CALLING / RINGING → своя камера во весь экран
                 if (!state.isCameraOff && hasCameraPermission) {
                     LocalCameraPreview(
                         modifier = Modifier.fillMaxSize(),
@@ -104,14 +93,12 @@ fun CallScreen(
                         )
                     }
                 }
-                // Полупрозрачный оверлей поверх камеры для читаемости текста
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(Color.Black.copy(alpha = 0.35f))
                 )
             } else {
-                // ONGOING → видео собеседника во весь экран (заглушка)
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -138,7 +125,6 @@ fun CallScreen(
                 }
             }
         } else {
-            // Аудиозвонок — тёмный фон
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -146,7 +132,6 @@ fun CallScreen(
             )
         }
 
-        // ── Тип звонка — вверху ─────────────────────────────────────
         Row(
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -167,14 +152,11 @@ fun CallScreen(
             )
         }
 
-        // ── Центральная часть: аватар + имя + статус ────────────────
-        // При видео ONGOING — имя/таймер показываем в углу, не по центру
         if (!isVideo || !isOngoing) {
             Column(
                 modifier = Modifier.align(Alignment.Center),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Аватар показываем только при аудиозвонке (при видео — камера на фоне)
                 if (!isVideo) {
                     Box(
                         modifier = Modifier.size(120.dp),
@@ -215,7 +197,6 @@ fun CallScreen(
                 )
             }
         } else {
-            // Имя собеседника + время в верхнем левом углу при ONGOING видеозвонке
             Column(
                 modifier = Modifier
                     .align(Alignment.TopStart)
@@ -226,10 +207,6 @@ fun CallScreen(
             }
         }
 
-        // ══════════════════════════════════════════════════════════════
-        // PiP-ОКОШКО — своя камера (перетаскивается)
-        // Показывается только при видеозвонке в режиме ONGOING
-        // ══════════════════════════════════════════════════════════════
         if (isVideo && isOngoing) {
             Box(
                 modifier = Modifier
@@ -272,7 +249,6 @@ fun CallScreen(
             }
         }
 
-        // ── Кнопки управления — внизу ──────────────────────────────
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
@@ -302,7 +278,6 @@ fun CallScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    // Видеокнопки — над кнопкой завершения
                     if (isVideo) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -322,8 +297,6 @@ fun CallScreen(
                             )
                         }
                     }
-                    // Основной ряд: Микрофон | Завершить | Динамик/Пустышка
-                    // Пустышка справа при видеозвонке балансирует Микрофон слева → End строго по центру
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(20.dp),
                         verticalAlignment = Alignment.CenterVertically
@@ -349,7 +322,6 @@ fun CallScreen(
                                 onClick = viewModel::toggleSpeaker
                             )
                         } else {
-                            // Невидимый балансир — End строго по центру
                             Box(Modifier.size(56.dp))
                         }
                     }
@@ -359,13 +331,10 @@ fun CallScreen(
     }
 }
 
-// ─── PiP камера с поддержкой переключения фронт/зад ──────────────────────────
-
 @Composable
 private fun LocalCameraPreview(modifier: Modifier = Modifier, useFrontCamera: Boolean = true) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-    // key() перерисовывает AndroidView при смене камеры
     key(useFrontCamera) {
         AndroidView(
             factory = { ctx ->

@@ -3,7 +3,6 @@ package com.whatsmax.utils
 
 object MimeDetector {
 
-    /** Определяет MIME-тип по сигнатуре файла или null если не опознан. */
     fun detect(bytes: ByteArray): String? {
         if (bytes.size < 12) return null
 
@@ -31,7 +30,6 @@ object MimeDetector {
         }
     }
 
-    /** Проверяет совместимость заявленного MIME с реальным содержимым. */
     fun isConsistent(declaredMime: String, bytes: ByteArray): Boolean {
         val detected = detect(bytes) ?: return true
         if (detected == "application/x-msdownload" || detected == "application/x-elf") return false

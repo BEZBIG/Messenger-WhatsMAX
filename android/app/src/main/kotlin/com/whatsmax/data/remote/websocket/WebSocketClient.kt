@@ -1,8 +1,4 @@
-/**
- * data/remote/websocket/WebSocketClient.kt
- * OkHttp WebSocket-клиент для real-time связи с Ktor-сервером:
- * авто-реконнект и трансляция входящих событий в SharedFlow.
- */
+/** OkHttp WebSocket-клиент с авто-реконнектом и SharedFlow событий. */
 package com.whatsmax.data.remote.websocket
 
 import android.util.Log
@@ -40,8 +36,6 @@ class WebSocketClient @Inject constructor(
     private val _events = MutableSharedFlow<WsEventDto>(extraBufferCapacity = 64)
     val events: SharedFlow<WsEventDto> = _events
 
-    /** Подключиться к WebSocket. Токен отправляется первым кадром после handshake,
-     *  а не как query-параметр (защита от логирования токена в прокси/CDN). */
     fun connect() {
         scope.launch {
             try {
@@ -73,8 +67,6 @@ class WebSocketClient @Inject constructor(
     private fun createListener(authToken: String) = object : WebSocketListener() {
         override fun onOpen(ws: WebSocket, response: Response) {
             isConnected = true
-            // Отправляем auth-кадр сразу после handshake — серверный webSocketRoutes
-            // ждёт его в течение 5 секунд, иначе закрывает соединение.
             val authJson = Json.encodeToString(WsEventDto(type = "auth", payload = authToken))
             ws.send(authJson)
             Log.i(TAG, "WebSocket connected, auth frame sent")

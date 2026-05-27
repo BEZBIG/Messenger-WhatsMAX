@@ -1,8 +1,4 @@
-/**
- * data/repository/MessageRepositoryImpl.kt
- * Реализация MessageRepository: REST для CRUD сообщений + WebSocket
- * для real-time. observeMessages() эмитит новые сообщения из WS.
- */
+/** Реализация MessageRepository: REST + WebSocket real-time. */
 package com.whatsmax.data.repository
 
 import com.whatsmax.data.remote.api.ApiService
@@ -55,10 +51,6 @@ class MessageRepositoryImpl @Inject constructor(
     override suspend fun markAsRead(chatId: String, messageId: String): Result<Unit> =
         safeApiCall { apiService.markAsRead(chatId, messageId); Unit }
 
-    /**
-     * Слушает WebSocket-события и эмитит новые/отредактированные сообщения
-     * только для указанного чата.
-     */
     override fun observeMessages(chatId: String): Flow<Message> =
         wsClient.events.mapNotNull { event ->
             when (event.type) {

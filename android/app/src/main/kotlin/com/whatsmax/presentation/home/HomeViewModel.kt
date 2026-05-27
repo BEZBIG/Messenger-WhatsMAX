@@ -24,7 +24,6 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
-/** Состояние UI главного экрана. */
 data class HomeUiState(
     val chats: List<Chat> = emptyList(),
     val currentUser: User? = null,
@@ -35,7 +34,6 @@ data class HomeUiState(
     val error: String? = null
 )
 
-/** Загружает чаты, слушает WebSocket, управляет поиском и созданием чатов. */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getChatsUseCase: GetChatsUseCase,
@@ -73,7 +71,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    /** Обновляет lastMessage и unreadCount при новом WS-сообщении. */
     private fun observeWebSocketMessages() {
         viewModelScope.launch {
             wsRepository.observeEvents().collect { event ->
@@ -145,7 +142,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    /** Удалить чат у текущего пользователя (soft-delete). */
     fun deleteChatForMe(chatId: String) {
         viewModelScope.launch {
             val userId = getCurrentUserUseCase()?.uid ?: return@launch
@@ -157,7 +153,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    /** Удалить чат у всех (физическое удаление, только создатель). */
     fun deleteChatForAll(chatId: String) {
         viewModelScope.launch {
             when (val result = deleteChatUseCase(chatId)) {
@@ -168,7 +163,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    /** Оптимистичный сброс unreadCount при открытии чата. */
     fun markChatAsRead(chatId: String) {
         _uiState.update { state ->
             state.copy(chats = state.chats.map { chat ->

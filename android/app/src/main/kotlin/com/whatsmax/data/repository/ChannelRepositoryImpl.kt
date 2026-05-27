@@ -1,8 +1,4 @@
-/**
- * data/repository/ChannelRepositoryImpl.kt
- * Реализация ChannelRepository: операции над каналами и комментариями
- * через Ktor REST API.
- */
+/** Реализация ChannelRepository через REST API. */
 package com.whatsmax.data.repository
 
 import com.whatsmax.data.remote.api.ApiService

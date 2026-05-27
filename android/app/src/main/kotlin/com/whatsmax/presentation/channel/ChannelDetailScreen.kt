@@ -1,8 +1,4 @@
-/**
- * presentation/channel/ChannelDetailScreen.kt
- * Экран ленты канала: посты, комментарии, реакции, подписка/отписка.
- * Тап по аватару: владелец — edit-sheet, подписчик — info-sheet.
- */
+/** Экран ленты канала: посты, комментарии, реакции, подписка/отписка */
 package com.whatsmax.presentation.channel
 
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -60,7 +56,6 @@ fun ChannelDetailScreen(
     var showDeleteDialog by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
-    // Запись войсов (только для владельца канала)
     val voiceRecorder = remember { VoiceRecorder(context) }
     var isRecordingVoice by remember { mutableStateOf(false) }
     val micPermissionLauncher = rememberLauncherForActivityResult(
@@ -82,9 +77,6 @@ fun ChannelDetailScreen(
             TopAppBar(
                 navigationIcon = { IconButton(onBack) { Icon(Icons.Default.ArrowBack, null) } },
                 title = {
-                    // Аватар канала кликабелен:
-                    //   • владелец → настройки (edit sheet)
-                    //   • подписчик → информация (info sheet)
                     Row(
                         modifier = Modifier.clickable {
                             if (isOwner) viewModel.openEditSheet()
@@ -159,7 +151,6 @@ fun ChannelDetailScreen(
                         }
                         Spacer(Modifier.width(8.dp))
                         val showMic = state.postText.isBlank() && !state.isPosting
-                        // Box вместо FAB — FAB перехватывает touch до pointerInput.
                         val containerColor = if (isRecordingVoice) Color.Red else MaterialTheme.colorScheme.primary
                         val baseModifier = Modifier.size(48.dp).clip(CircleShape).background(containerColor)
                         val interactiveModifier = if (showMic) {
@@ -242,7 +233,6 @@ fun ChannelDetailScreen(
         }
     }
 
-    // Диалог подтверждения удаления
     if (showDeleteDialog) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
@@ -259,7 +249,6 @@ fun ChannelDetailScreen(
         )
     }
 
-    // Боттом-шит подписчиков
     if (state.showSubscribersSheet) {
         SubscribersSheet(
             subscribers = state.subscribers,
@@ -269,7 +258,6 @@ fun ChannelDetailScreen(
         )
     }
 
-    // Боттом-шит настроек канала (только владелец)
     if (state.showEditSheet) {
         ChannelEditSheet(
             name         = state.editName,
@@ -282,15 +270,12 @@ fun ChannelDetailScreen(
         )
     }
 
-    // Боттом-шит информации о канале (подписчик)
     if (state.showInfoSheet) {
         state.channel?.let { ch ->
             ChannelInfoSheet(channel = ch, onDismiss = { viewModel.closeInfoSheet() })
         }
     }
 }
-
-// ─── Аватар канала ────────────────────────────────────────────────────────────
 
 @Composable
 private fun ChannelAvatar(name: String, avatarUrl: String?, size: Int) {
@@ -317,8 +302,6 @@ private fun ChannelAvatar(name: String, avatarUrl: String?, size: Int) {
         }
     }
 }
-
-// ─── Карточка поста ───────────────────────────────────────────────────────────
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -357,7 +340,6 @@ private fun ChannelMessageCard(
             }
             msg.content?.let { Text(it, fontSize = 15.sp) }
 
-            // Реакция на пост
             if (myReaction != null) {
                 Spacer(Modifier.height(4.dp))
                 Surface(
@@ -393,7 +375,6 @@ private fun ChannelMessageCard(
                         Text(msg.views.toString(), style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
                     }
-                    // Кнопка реакции
                     IconButton(
                         onClick = { showReactionPicker = true },
                         modifier = Modifier.size(28.dp)
@@ -417,7 +398,6 @@ private fun ChannelMessageCard(
                 }
             }
 
-            // Комментарии
             if (isLoadingComments) {
                 Box(Modifier.fillMaxWidth().padding(8.dp), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
@@ -471,7 +451,6 @@ private fun ChannelMessageCard(
         }
     }
 
-    // Пикер реакций на пост
     if (showReactionPicker) {
         EmojiPickerDialog(
             onReact   = { emoji -> onReact(emoji); showReactionPicker = false },
@@ -479,8 +458,6 @@ private fun ChannelMessageCard(
         )
     }
 }
-
-// ─── Комментарий ─────────────────────────────────────────────────────────────
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -530,7 +507,6 @@ private fun CommentItem(
                     color = MaterialTheme.colorScheme.onSurface.copy(0.4f))
             }
             Text(comment.content, fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface)
-            // Реакция на комментарий
             if (myReaction != null) {
                 Spacer(Modifier.height(2.dp))
                 Surface(
@@ -556,8 +532,6 @@ private fun CommentItem(
     }
 }
 
-// ─── Общий пикер эмодзи ──────────────────────────────────────────────────────
-
 @Composable
 private fun EmojiPickerDialog(onReact: (String) -> Unit, onDismiss: () -> Unit) {
     Dialog(onDismissRequest = onDismiss) {
@@ -578,8 +552,6 @@ private fun EmojiPickerDialog(onReact: (String) -> Unit, onDismiss: () -> Unit) 
         }
     }
 }
-
-// ─── Шит настроек канала (владелец) ──────────────────────────────────────────
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -643,8 +615,6 @@ private fun ChannelEditSheet(
     }
 }
 
-// ─── Шит информации о канале (подписчик) ─────────────────────────────────────
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ChannelInfoSheet(
@@ -660,7 +630,6 @@ private fun ChannelInfoSheet(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(8.dp))
-            // Большой аватар
             ChannelAvatar(name = channel.name, avatarUrl = channel.avatarUrl, size = 80)
             Spacer(Modifier.height(12.dp))
             Text(channel.name, fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -706,8 +675,6 @@ private fun InfoRow(icon: androidx.compose.ui.graphics.vector.ImageVector, text:
         Text(text, fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface)
     }
 }
-
-// ─── Шит подписчиков ──────────────────────────────────────────────────────────
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

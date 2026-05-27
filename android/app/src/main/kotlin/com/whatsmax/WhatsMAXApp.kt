@@ -1,8 +1,4 @@
-/**
- * WhatsMAXApp.kt
- * Application-класс — точка входа. Инициализирует Hilt DI и создаёт
- * каналы push-уведомлений для Android 8+.
- */
+/** Application-класс: Hilt DI и каналы push-уведомлений. */
 package com.whatsmax
 
 import android.app.Application
@@ -23,7 +19,6 @@ class WhatsMAXApp : Application() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val manager = getSystemService(NotificationManager::class.java)
 
-            // Канал для входящих сообщений
             manager.createNotificationChannel(
                 NotificationChannel(
                     "whatsmax_messages",
@@ -32,7 +27,6 @@ class WhatsMAXApp : Application() {
                 ).apply { description = "Входящие сообщения WhatsMAX" }
             )
 
-            // Канал для звонков
             manager.createNotificationChannel(
                 NotificationChannel(
                     "whatsmax_calls",

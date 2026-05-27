@@ -1,8 +1,4 @@
-/**
- * domain/repository/Repositories.kt
- * Интерфейсы репозиториев domain-слоя. Use Cases зависят только от них;
- * реализации лежат в data/repository/.
- */
+/** Интерфейсы репозиториев domain-слоя. */
 package com.whatsmax.domain.repository
 
 import com.whatsmax.domain.model.*
@@ -75,7 +71,6 @@ interface FileRepository {
     suspend fun getFileUrl(fileId: String): String
 }
 
-/** emoji -> count; myReaction = emoji выбранный текущим юзером */
 data class ReactionSummary(
     val reactions: Map<String, Int> = emptyMap(),
     val myReaction: String? = null

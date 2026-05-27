@@ -66,7 +66,6 @@ interface ReactionRepository {
     suspend fun getReactions(entityType: String, entityId: UUID, userId: String?): ReactionSummary
 }
 
-/** Метаданные файла в MinIO. */
 data class StoredFileMeta(
     val id: UUID,
     val originalName: String,

@@ -1,8 +1,4 @@
-/**
- * data/remote/fcm/WhatsMAXFirebaseMessagingService.kt
- * FCM-сервис: обрабатывает push-уведомления (сообщения, звонки)
- * и шлёт обновлённый FCM-токен на бэкенд.
- */
+/** FCM-сервис: push-уведомления и обновление токена. */
 package com.whatsmax.data.remote.fcm
 
 import android.app.NotificationManager
@@ -27,7 +23,6 @@ class WhatsMAXFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        // Обновляем токен на сервере при его обновлении
         CoroutineScope(Dispatchers.IO).launch {
             try { apiService.updateFcmToken(mapOf("token" to token)) }
             catch (e: Exception) { /* игнорируем */ }

@@ -1,7 +1,4 @@
-/**
- * data/repository/ChatRepositoryImpl.kt
- * Реализация ChatRepository: CRUD-операции с чатами через Ktor REST API.
- */
+/** Реализация ChatRepository: CRUD чатов через REST API. */
 package com.whatsmax.data.repository
 
 import com.whatsmax.data.remote.api.ApiService
@@ -57,7 +54,6 @@ class ChatRepositoryImpl @Inject constructor(
     }
 }
 
-/** Безопасный вызов API с понятными сообщениями об ошибках */
 suspend fun <T> safeApiCall(block: suspend () -> T): Result<T> {
     return try {
         Result.Success(block())
@@ -72,7 +68,6 @@ suspend fun <T> safeApiCall(block: suspend () -> T): Result<T> {
     }
 }
 
-/** Возвращает тело ответа или кидает исключение с HTTP-кодом и телом ошибки */
 fun <T> retrofit2.Response<T>.bodyOrThrow(): T {
     if (isSuccessful) return body() ?: error("Пустой ответ от сервера (${code()})")
     val errBody = errorBody()?.string()?.take(300)

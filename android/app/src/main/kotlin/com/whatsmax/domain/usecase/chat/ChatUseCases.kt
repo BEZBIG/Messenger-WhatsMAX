@@ -1,8 +1,4 @@
-/**
- * domain/usecase/chat/ChatUseCases.kt
- * Use Cases для работы с чатами: создание (direct/group), получение
- * списка, управление участниками.
- */
+/** Use Cases чатов: создание, получение, управление участниками. */
 package com.whatsmax.domain.usecase.chat
 
 import com.whatsmax.domain.model.Chat

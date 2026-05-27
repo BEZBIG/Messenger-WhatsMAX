@@ -1,8 +1,4 @@
-/**
- * di/NetworkModule.kt
- * Hilt-модуль сетевых зависимостей: OkHttpClient (с AuthInterceptor),
- * Retrofit, ApiService, WebSocketClient.
- */
+/** Hilt-модуль сетевых зависимостей: OkHttp, Retrofit, ApiService, WS. */
 package com.whatsmax.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory

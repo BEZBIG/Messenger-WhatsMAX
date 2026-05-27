@@ -1,7 +1,4 @@
-/**
- * data/repository/WebSocketRepositoryImpl.kt
- * Реализация WebSocketRepository — обёртка над WebSocketClient для domain-слоя.
- */
+/** Реализация WebSocketRepository поверх WebSocketClient. */
 package com.whatsmax.data.repository
 
 import com.whatsmax.data.remote.dto.WsEventDto

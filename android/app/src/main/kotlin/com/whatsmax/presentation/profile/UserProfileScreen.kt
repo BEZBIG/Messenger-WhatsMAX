@@ -1,8 +1,4 @@
-/**
- * presentation/profile/UserProfileScreen.kt
- * Профиль другого пользователя: аватар, имя, username, bio, online-статус.
- * Действия: написать, позвонить, видеозвонок, заблокировать.
- */
+/** Экран профиля пользователя: аватар, контакты, действия */
 package com.whatsmax.presentation.profile
 
 import androidx.compose.foundation.background
@@ -39,8 +35,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-// ─── ViewModel ───────────────────────────────────────────────────────────────
 
 data class UserProfileUiState(
     val user: User? = null,
@@ -84,8 +78,6 @@ class UserProfileViewModel @Inject constructor(
     }
 }
 
-// ─── Screen ──────────────────────────────────────────────────────────────────
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserProfileScreen(
@@ -96,7 +88,6 @@ fun UserProfileScreen(
     viewModel: UserProfileViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
-    // Если currentUserId ещё не загружен (пустой) — скрываем кнопки действий (безопасный дефолт)
     val isOwnProfile = state.currentUserId.isEmpty() || state.currentUserId == userId
     var showBlockDialog by remember { mutableStateOf(false) }
     var isBlocked by remember { mutableStateOf(false) }
@@ -131,7 +122,6 @@ fun UserProfileScreen(
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
                 ) {
-                    // ── Шапка с градиентом ──────────────────────────────────
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -151,7 +141,6 @@ fun UserProfileScreen(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier.padding(bottom = 24.dp)
                         ) {
-                            // Аватар
                             if (user.avatarUrl != null) {
                                 AsyncImage(
                                     model = user.avatarUrl,
@@ -185,7 +174,6 @@ fun UserProfileScreen(
                                 )
                             }
                             Spacer(Modifier.height(4.dp))
-                            // Онлайн-статус
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Box(
                                     modifier = Modifier.size(8.dp).clip(CircleShape)
@@ -201,7 +189,6 @@ fun UserProfileScreen(
                         }
                     }
 
-                    // ── Панель действий (скрыта для своего профиля) ─────────
                     if (!isOwnProfile) {
                         Surface(
                             modifier = Modifier
@@ -247,7 +234,6 @@ fun UserProfileScreen(
                         }
                     }
 
-                    // ── Информация о пользователе ───────────────────────────
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -313,7 +299,6 @@ fun UserProfileScreen(
         }
     }
 
-    // Диалог блокировки
     if (showBlockDialog) {
         AlertDialog(
             onDismissRequest = { showBlockDialog = false },
@@ -346,8 +331,6 @@ fun UserProfileScreen(
         )
     }
 }
-
-// ─── Вспомогательные компоненты ──────────────────────────────────────────────
 
 @Composable
 private fun ActionButton(

@@ -1,8 +1,4 @@
-/**
- * domain/usecase/channel/ChannelUseCases.kt
- * Use Cases для каналов (Telegram-style): создание, поиск, подписка,
- * посты и комментарии.
- */
+/** Use Cases каналов: создание, поиск, подписка, посты, комментарии. */
 package com.whatsmax.domain.usecase.channel
 
 import com.whatsmax.domain.model.Channel

@@ -1,8 +1,4 @@
-/**
- * domain/usecase/message/MessageUseCases.kt
- * Use Cases сообщений: отправка, получение, редактирование, удаление,
- * подписка на real-time события.
- */
+/** Use Cases сообщений: отправка, получение, редактирование, удаление. */
 package com.whatsmax.domain.usecase.message
 
 import com.whatsmax.domain.model.Message

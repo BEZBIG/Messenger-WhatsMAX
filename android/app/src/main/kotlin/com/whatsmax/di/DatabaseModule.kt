@@ -1,7 +1,4 @@
-/**
- * di/DatabaseModule.kt
- * Hilt-модуль Room: предоставляет AppDatabase и DAO-объекты.
- */
+/** Hilt-модуль Room: AppDatabase и DAO. */
 package com.whatsmax.di
 
 import android.content.Context

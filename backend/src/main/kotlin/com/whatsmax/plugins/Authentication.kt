@@ -12,7 +12,6 @@ import java.util.concurrent.ConcurrentHashMap
 
 private val authLogger = LoggerFactory.getLogger("Authentication")
 
-/** Principal с данными из Firebase ID Token. */
 data class FirebasePrincipal(
     val uid: String,
     val email: String?,
@@ -59,7 +58,6 @@ fun Application.configureAuthentication() {
     }
 }
 
-/** Сбрасывает кеш для конкретного токена. */
 fun invalidateAuthCache(token: String) {
     tokenCache.remove(token)
 }

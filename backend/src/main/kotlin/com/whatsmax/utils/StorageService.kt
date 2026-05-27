@@ -9,7 +9,6 @@ import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.util.concurrent.TimeUnit
 
-/** Конфигурация подключения к S3-совместимому хранилищу. */
 data class StorageConfig(
     val endpoint: String,
     val publicEndpoint: String,
@@ -19,7 +18,6 @@ data class StorageConfig(
     val presignedTtlSeconds: Int
 )
 
-/** Сервис чтения/записи объектов в MinIO. */
 class StorageService(private val cfg: StorageConfig) {
 
     private val client: MinioClient = MinioClient.builder()
@@ -27,7 +25,6 @@ class StorageService(private val cfg: StorageConfig) {
         .credentials(cfg.accessKey, cfg.secretKey)
         .build()
 
-    /** Загружает байты в бакет, возвращает objectKey. */
     suspend fun upload(objectKey: String, bytes: ByteArray, contentType: String): String =
         withContext(Dispatchers.IO) {
             ByteArrayInputStream(bytes).use { input ->
@@ -43,7 +40,6 @@ class StorageService(private val cfg: StorageConfig) {
             objectKey
         }
 
-    /** Streaming-загрузка из InputStream для больших файлов. */
     suspend fun uploadStream(
         objectKey: String, input: InputStream, contentType: String, totalSize: Long
     ): String = withContext(Dispatchers.IO) {
@@ -58,11 +54,9 @@ class StorageService(private val cfg: StorageConfig) {
         objectKey
     }
 
-    /** Возвращает публичный URL для скачивания объекта. */
     fun presignedGetUrl(objectKey: String): String =
         "${cfg.publicEndpoint.trimEnd('/')}/${cfg.bucket}/$objectKey"
 
-    /** Удаляет объект из хранилища. */
     suspend fun delete(objectKey: String) = withContext(Dispatchers.IO) {
         runCatching {
             client.removeObject(

@@ -1,15 +1,9 @@
-/**
- * data/remote/dto/Dtos.kt
- * DTO для сетевого слоя: kotlinx.serialization из JSON API-ответов,
- * маппинг в доменные модели через extension toModel().
- */
+/** DTO сетевого слоя с маппингом в доменные модели. */
 package com.whatsmax.data.remote.dto
 
 import com.whatsmax.domain.model.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-
-// ─── User DTO ─────────────────────────────────────────────────────────────────
 
 @Serializable
 data class UserDto(
@@ -44,8 +38,6 @@ data class UpdateUserRequest(
     @SerialName("fcm_token") val fcmToken: String? = null,
     @SerialName("avatar_url") val avatarUrl: String? = null
 )
-
-// ─── Chat DTO ─────────────────────────────────────────────────────────────────
 
 @Serializable
 data class ChatDto(
@@ -95,8 +87,6 @@ data class CreateChatRequest(
     val name: String? = null,
     val description: String? = null
 )
-
-// ─── Message DTO ──────────────────────────────────────────────────────────────
 
 @Serializable
 data class MessageDto(
@@ -148,8 +138,6 @@ data class SendMessageRequest(
 
 @Serializable
 data class EditMessageRequest(val content: String)
-
-// ─── Channel DTO ──────────────────────────────────────────────────────────────
 
 @Serializable
 data class ChannelDto(
@@ -230,8 +218,6 @@ data class UpdateChannelRequest(
     @SerialName("avatar_url") val avatarUrl: String? = null
 )
 
-// ─── File DTO ─────────────────────────────────────────────────────────────────
-
 @Serializable
 data class FileInfoDto(
     val id: String = "",
@@ -245,18 +231,14 @@ data class FileInfoDto(
     fun toModel() = FileInfo(id, originalName, mimeType, sizeBytes, url, uploadedAt, thumbUrl)
 }
 
-// ─── Reactions DTO ───────────────────────────────────────────────────────────
-
 @Serializable
 data class ReactionRequest(val emoji: String)
 
 @Serializable
 data class ReactionSummaryDto(
-    val reactions: Map<String, Int> = emptyMap(),  // emoji -> count
+    val reactions: Map<String, Int> = emptyMap(),
     @SerialName("my_reaction") val myReaction: String? = null
 )
-
-// ─── WebSocket DTO ────────────────────────────────────────────────────────────
 
 @Serializable
 data class WsEventDto(val type: String, val payload: String) {

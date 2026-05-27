@@ -32,7 +32,6 @@ import com.whatsmax.domain.model.MessageType
 import com.whatsmax.domain.model.User
 import java.time.LocalDate
 
-/** Composable главного экрана с нижней навигацией и списком чатов. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
@@ -177,7 +176,6 @@ private fun SearchBar(query: String, onQueryChange: (String) -> Unit, modifier: 
     )
 }
 
-/** Элемент списка чатов с долгим нажатием для контекстного меню. */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun ChatListItem(
@@ -319,7 +317,6 @@ private fun ChatListItem(
     }
 }
 
-/** Форматирует время: "23:52" если сегодня, иначе "30 мар". */
 private fun String.toSmartTime(): String {
     return try {
         val datePart = substringBefore("T").let { if (it.length == 10) it else take(10) }
@@ -334,7 +331,6 @@ private fun String.toSmartTime(): String {
     } catch (e: Exception) { "" }
 }
 
-/** Диалог создания личного чата. */
 @Composable
 private fun NewDirectChatDialog(
     searchResults: List<User>,
@@ -388,7 +384,6 @@ private fun NewDirectChatDialog(
     )
 }
 
-/** Диалог создания группового чата. */
 @Composable
 private fun NewGroupChatDialog(
     searchResults: List<User>,

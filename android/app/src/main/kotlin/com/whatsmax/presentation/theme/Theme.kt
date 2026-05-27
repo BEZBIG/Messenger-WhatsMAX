@@ -44,7 +44,6 @@ private val DarkColorScheme = darkColorScheme(
     outline          = Color(0xFF5C5C5C)
 )
 
-/** Применяет светлую или тёмную тему WhatsMAX. */
 @Composable
 fun WhatsMAXTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -58,12 +57,10 @@ fun WhatsMAXTheme(
     )
 }
 
-/** Цвет пузыря собственного сообщения с учётом темы. */
 val messageBubbleOwn: Color
     @Composable @ReadOnlyComposable
     get() = if (isSystemInDarkTheme()) MessageOwnDark else MessageOwnLight
 
-/** Цвет пузыря чужого сообщения с учётом темы. */
 val messageBubbleOther: Color
     @Composable @ReadOnlyComposable
     get() = if (isSystemInDarkTheme()) MessageOtherDark else MessageOtherLight

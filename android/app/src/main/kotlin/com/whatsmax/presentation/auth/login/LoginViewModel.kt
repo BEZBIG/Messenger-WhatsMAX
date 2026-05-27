@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/** Состояние UI экрана входа. */
 data class LoginUiState(
     val email: String = "",
     val password: String = "",
@@ -21,7 +20,6 @@ data class LoginUiState(
     val isSuccess: Boolean = false
 )
 
-/** Управляет формой входа и вызывает SignInWithEmailUseCase. */
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val signInUseCase: SignInWithEmailUseCase

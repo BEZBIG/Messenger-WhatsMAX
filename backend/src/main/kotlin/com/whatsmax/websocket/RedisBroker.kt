@@ -15,14 +15,12 @@ class RedisBroker(redisUrl: String) {
 
     private fun userChannel(uid: String) = "ws:user:$uid"
 
-    /** Публикует payload в Redis-канал пользователя. */
     fun publishToUser(uid: String, payload: String) {
         runCatching {
             publishConn.async().publish(userChannel(uid), payload)
         }.onFailure { logger.warn("Redis publish failed for $uid: ${it.message}") }
     }
 
-    /** Подписывает handler на события для uid, возвращает функцию отписки. */
     fun subscribeForUser(uid: String, onMessage: (String) -> Unit): () -> Unit {
         val pattern = userChannel(uid)
         val listener = object : RedisPubSubAdapter<String, String>() {
@@ -40,7 +38,6 @@ class RedisBroker(redisUrl: String) {
         }
     }
 
-    /** Закрытие при shutdown сервера. */
     fun close() {
         runCatching { publishConn.close() }
         runCatching { subscribeConn.close() }

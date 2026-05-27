@@ -23,7 +23,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/** Единственная Activity: сплэш, Compose-контент, WebSocket. */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

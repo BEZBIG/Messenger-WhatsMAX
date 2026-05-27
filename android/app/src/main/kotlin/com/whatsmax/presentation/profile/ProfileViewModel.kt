@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
 
-/** Состояние UI экрана профиля. */
 data class ProfileUiState(
     val user: User? = null,
     val editDisplayName: String = "",
@@ -30,7 +29,6 @@ data class ProfileUiState(
     val error: String? = null
 )
 
-/** Загрузка данных, редактирование профиля, смена аватара и выход. */
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val getCurrentUserUseCase: GetCurrentUserUseCase,

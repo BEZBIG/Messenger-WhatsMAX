@@ -53,7 +53,6 @@ class WebSocketManager(private val broker: RedisBroker? = null) {
         logger.info("User $uid disconnected. Local sessions: ${sessions.size}")
     }
 
-    /** Отправляет событие пользователю через Redis или локально. */
     suspend fun sendToUser(uid: String, event: WsEvent) {
         val json = Json.encodeToString(event)
         if (broker != null) {
@@ -71,7 +70,6 @@ class WebSocketManager(private val broker: RedisBroker? = null) {
         }
     }
 
-    /** Отправляет событие списку пользователей параллельно. */
     suspend fun sendToUsers(uids: List<String>, event: WsEvent) = coroutineScope {
         uids.map { uid -> async { sendToUser(uid, event) } }.awaitAll()
         Unit

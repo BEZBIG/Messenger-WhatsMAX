@@ -1,8 +1,4 @@
-/**
- * presentation/voice/VoiceMessagePlayer.kt
- * Composable-плеер голосовых: play/pause, waveform с прогрессом,
- * длительность. На стандартном MediaPlayer (без ExoPlayer).
- */
+/** Composable-плеер голосовых: play/pause, waveform, MediaPlayer. */
 package com.whatsmax.presentation.voice
 
 import android.media.MediaPlayer
@@ -30,12 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
-/**
- * @param audioUrl  абсолютный или относительный URL воспроизведения (BASE_URL/files/{id})
- * @param durationMs  длительность из метаданных (если null — попробуем взять из MediaPlayer)
- * @param waveform  100 нормализованных амплитуд 0..100; если null — рисуем плоскую линию
- * @param tint  цвет акцента (для своих/чужих сообщений)
- */
 @Composable
 fun VoiceMessagePlayer(
     audioUrl: String,
@@ -48,7 +38,6 @@ fun VoiceMessagePlayer(
     var totalMs by remember(audioUrl) { mutableStateOf(durationMs ?: 0L) }
     val player = remember(audioUrl) { MediaPlayer() }
 
-    // Подготовка/освобождение
     DisposableEffect(audioUrl) {
         runCatching {
             player.setDataSource(audioUrl)
@@ -67,7 +56,6 @@ fun VoiceMessagePlayer(
         }
     }
 
-    // Тик прогресса
     LaunchedEffect(isPlaying) {
         while (isPlaying) {
             positionMs = runCatching { player.currentPosition.toLong() }.getOrDefault(positionMs)
@@ -141,7 +129,6 @@ private fun WaveformBar(
         val centerY = size.height / 2f
         val playedBars = (barCount * progress).toInt()
         points.forEachIndexed { i, amp ->
-            // Минимальная высота 10% чтобы тишина не была невидимой
             val h = (size.height * (amp.coerceAtLeast(10) / 100f)).coerceAtLeast(2f)
             val x = i * (barWidth + gap) + barWidth / 2f
             val barColor = if (i < playedBars) color else color.copy(alpha = 0.35f)

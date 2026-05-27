@@ -1,8 +1,4 @@
-/**
- * data/remote/api/AuthInterceptor.kt
- * OkHttp Interceptor: подставляет Firebase ID Token в заголовок
- * Authorization: Bearer для всех API-запросов.
- */
+/** OkHttp Interceptor: Firebase ID Token в Authorization: Bearer. */
 package com.whatsmax.data.remote.api
 
 import com.google.firebase.auth.FirebaseAuth
@@ -36,7 +32,6 @@ class AuthInterceptor @Inject constructor() : Interceptor {
 
         val response = chain.proceed(request)
 
-        // Если токен протух (401) — принудительно обновляем и повторяем
         if (response.code == 401) {
             response.close()
             val freshToken = runBlocking {

@@ -1,8 +1,4 @@
-/**
- * data/local/AppDatabase.kt
- * Room-БД для локального кэша сообщений и чатов — оффлайн-просмотр истории.
- * Версия 1: таблицы cached_messages и cached_chats.
- */
+/** Room-БД: локальный кэш сообщений для оффлайн-просмотра. */
 package com.whatsmax.data.local
 
 import androidx.room.*

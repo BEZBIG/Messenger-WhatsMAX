@@ -14,11 +14,9 @@ object ThumbnailGenerator {
     private const val MAX_EDGE_PX = 320
     private const val JPEG_QUALITY = 0.75f
 
-    /** Проверяет, поддерживается ли MIME-тип для превью. */
     fun supports(mimeType: String): Boolean =
         mimeType.startsWith("image/", ignoreCase = true) && !mimeType.contains("svg", ignoreCase = true)
 
-    /** Создаёт JPEG-thumbnail или null при ошибке декодирования. */
     fun generate(source: ByteArray): ByteArray? = runCatching {
         val original = ImageIO.read(ByteArrayInputStream(source)) ?: return null
         val scaled = scale(original)

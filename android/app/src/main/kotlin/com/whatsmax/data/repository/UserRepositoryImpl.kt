@@ -1,8 +1,4 @@
-/**
- * data/repository/UserRepositoryImpl.kt
- * Реализация UserRepository: поиск пользователей и обновление профиля
- * через REST API.
- */
+/** Реализация UserRepository: поиск и обновление профилей. */
 package com.whatsmax.data.repository
 
 import com.whatsmax.data.remote.api.ApiService

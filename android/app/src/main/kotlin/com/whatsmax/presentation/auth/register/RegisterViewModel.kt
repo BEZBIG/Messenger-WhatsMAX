@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/** Состояние UI экрана регистрации. */
 data class RegisterUiState(
     val email: String = "",
     val password: String = "",
@@ -24,7 +23,6 @@ data class RegisterUiState(
     val isSuccess: Boolean = false
 )
 
-/** Валидирует поля и вызывает SignUpWithEmailUseCase. */
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val signUpUseCase: SignUpWithEmailUseCase

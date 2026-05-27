@@ -1,8 +1,4 @@
-/**
- * data/repository/AuthRepositoryImpl.kt
- * Реализация AuthRepository: Firebase Auth (email или Google),
- * затем POST /auth/register — создание профиля в PostgreSQL.
- */
+/** Реализация AuthRepository: Firebase Auth + backend. */
 package com.whatsmax.data.repository
 
 import com.google.firebase.auth.FirebaseAuth
@@ -29,7 +25,6 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun signInWithEmail(email: String, password: String): Result<User> {
         return try {
             firebaseAuth.signInWithEmailAndPassword(email, password).await()
-            // После входа — получаем профиль из бэкенда
             val response = apiService.getMe()
             if (response.isSuccessful) {
                 Result.Success(response.bodyOrThrow().toModel())
@@ -46,10 +41,7 @@ class AuthRepositoryImpl @Inject constructor(
         username: String, displayName: String
     ): Result<User> {
         return try {
-            // 1. Создаём аккаунт в Firebase
             firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-
-            // 2. Регистрируем профиль в PostgreSQL
             val response = apiService.registerUser(
                 CreateUserRequest(
                     username    = username,
@@ -60,7 +52,6 @@ class AuthRepositoryImpl @Inject constructor(
             if (response.isSuccessful) {
                 Result.Success(response.bodyOrThrow().toModel())
             } else {
-                // Если бэкенд вернул ошибку — откатываем Firebase-аккаунт
                 firebaseAuth.currentUser?.delete()?.await()
                 Result.Error("Registration failed: ${response.code()}")
             }
@@ -75,13 +66,11 @@ class AuthRepositoryImpl @Inject constructor(
             val credential = GoogleAuthProvider.getCredential(idToken, null)
             firebaseAuth.signInWithCredential(credential).await()
 
-            // Пробуем загрузить существующий профиль
             val meResponse = apiService.getMe()
             if (meResponse.isSuccessful) {
                 return Result.Success(meResponse.bodyOrThrow().toModel())
             }
 
-            // Если профиля нет (новый пользователь) — создаём
             val user = firebaseAuth.currentUser!!
             val regResponse = apiService.registerUser(
                 CreateUserRequest(
@@ -101,10 +90,6 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun signOut() {
-        // Порядок важен:
-        // 1) Отозвать токены на сервере — пока ещё есть валидный Authorization header
-        // 2) Закрыть WS — серверный finally сбросит is_online=false
-        // 3) Локальный signOut Firebase
         runCatching { apiService.signOutOnServer() }  // не валим logout если бэкенд недоступен
         webSocketClient.disconnect()
         firebaseAuth.signOut()

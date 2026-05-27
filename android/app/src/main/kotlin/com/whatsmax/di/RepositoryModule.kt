@@ -1,8 +1,4 @@
-/**
- * di/RepositoryModule.kt
- * Hilt-модуль: привязывает интерфейсы domain/repository к их реализациям
- * из data/repository, чтобы ViewModel зависел только от абстракций.
- */
+/** Hilt-модуль: привязки интерфейсов репозиториев к реализациям. */
 package com.whatsmax.di
 
 import com.whatsmax.data.remote.api.ApiService

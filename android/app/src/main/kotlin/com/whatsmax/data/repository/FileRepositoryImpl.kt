@@ -1,8 +1,4 @@
-/**
- * data/repository/FileRepositoryImpl.kt
- * Реализация FileRepository: загрузка файлов на сервер через
- * multipart/form-data и построение публичных URL.
- */
+/** Реализация FileRepository: multipart upload и URL файлов. */
 package com.whatsmax.data.repository
 
 import com.whatsmax.data.remote.api.ApiService

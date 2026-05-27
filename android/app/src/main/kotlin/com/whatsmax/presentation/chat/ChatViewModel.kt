@@ -19,7 +19,6 @@ import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
 
-/** Состояние UI экрана чата. */
 data class ChatUiState(
     val chat: Chat? = null,
     val messages: List<Message> = emptyList(),
@@ -33,7 +32,6 @@ data class ChatUiState(
     val messageReactions: Map<String, String> = emptyMap()
 )
 
-/** Управляет историей сообщений, real-time обновлениями, реакциями и отправкой. */
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     private val getMessagesUseCase: GetMessagesUseCase,
@@ -163,7 +161,6 @@ class ChatViewModel @Inject constructor(
         }
     }
 
-    /** Загружает .m4a и отправляет как голосовое сообщение. */
     fun uploadAndSendVoice(chatId: String, file: File, durationMs: Long, waveform: List<Int>) {
         viewModelScope.launch {
             _uiState.update { it.copy(isSending = true) }
@@ -209,7 +206,6 @@ class ChatViewModel @Inject constructor(
         }
     }
 
-    /** Ставит/снимает реакцию с оптимистичным обновлением. */
     fun toggleReaction(messageId: String, emoji: String) {
         val current = _uiState.value.messageReactions[messageId]
         _uiState.update { state ->
@@ -258,7 +254,6 @@ class ChatViewModel @Inject constructor(
         }
     }
 
-    /** Преобразует fileId в абсолютный URL для MediaPlayer/Coil. */
     suspend fun resolveFileUrl(fileId: String): String = fileRepository.getFileUrl(fileId)
 
     fun loadMoreMessages(chatId: String) {

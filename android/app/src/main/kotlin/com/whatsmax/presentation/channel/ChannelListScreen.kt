@@ -1,8 +1,4 @@
-/**
- * presentation/channel/ChannelListScreen.kt
- * Экран списка каналов: подписки пользователя, поиск публичных,
- * кнопка создания нового канала.
- */
+/** Экран списка каналов: подписки, поиск, создание. */
 package com.whatsmax.presentation.channel
 
 import androidx.compose.foundation.clickable

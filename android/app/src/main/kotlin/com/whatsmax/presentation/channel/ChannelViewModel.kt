@@ -1,8 +1,4 @@
-/**
- * presentation/channel/ChannelViewModel.kt
- * ViewModel экранов каналов: список/поиск, лента постов, комментарии,
- * подписка и реакции.
- */
+/** ViewModel каналов: список, лента постов, комментарии, подписка, реакции */
 package com.whatsmax.presentation.channel
 
 import androidx.lifecycle.ViewModel
@@ -41,25 +37,19 @@ data class ChannelDetailUiState(
     val isLoading: Boolean = false,
     val isPosting: Boolean = false,
     val isDeleting: Boolean = false,
-    // Подписчики
     val subscribers: List<User> = emptyList(),
     val isLoadingSubscribers: Boolean = false,
     val showSubscribersSheet: Boolean = false,
-    // Комментарии
     val expandedComments: Map<String, List<ChannelComment>> = emptyMap(),
     val commentTexts: Map<String, String> = emptyMap(),
     val loadingComments: Set<String> = emptySet(),
     val sendingComment: Set<String> = emptySet(),
-    // Редактирование канала (владелец)
     val showEditSheet: Boolean = false,
     val editName: String = "",
     val editDescription: String = "",
     val isUpdating: Boolean = false,
-    // Информация о канале (подписчик)
     val showInfoSheet: Boolean = false,
-    // Реакции на посты: messageId -> emoji выбранный текущим юзером (пусто = нет реакции)
     val messageReactions: Map<String, String> = emptyMap(),
-    // Реакции на комментарии: "messageId:commentId" -> emoji
     val commentReactions: Map<String, String> = emptyMap()
 )
 
@@ -130,7 +120,6 @@ class ChannelViewModel @Inject constructor(
                     channel      = ch,
                     messages     = messages,
                     isLoading    = false,
-                    // Инициализируем поля редактирования текущими значениями канала
                     editName        = ch?.name ?: state.editName,
                     editDescription = ch?.description ?: state.editDescription
                 )
@@ -194,8 +183,6 @@ class ChannelViewModel @Inject constructor(
         }
     }
 
-    // ─── Настройки канала (владелец) ────────────────────────────────────────
-
     fun openEditSheet() {
         val ch = _detailState.value.channel ?: return
         _detailState.update { it.copy(
@@ -231,12 +218,8 @@ class ChannelViewModel @Inject constructor(
         }
     }
 
-    // ─── Информация о канале (подписчик) ────────────────────────────────────
-
     fun openInfoSheet()  = _detailState.update { it.copy(showInfoSheet = true) }
     fun closeInfoSheet() = _detailState.update { it.copy(showInfoSheet = false) }
-
-    // ─── Удаление ────────────────────────────────────────────────────────────
 
     fun deleteChannel(channelId: String, onDeleted: () -> Unit) {
         viewModelScope.launch {
@@ -252,8 +235,6 @@ class ChannelViewModel @Inject constructor(
         }
     }
 
-    // ─── Подписчики ──────────────────────────────────────────────────────────
-
     fun loadSubscribers(channelId: String) {
         viewModelScope.launch {
             _detailState.update { it.copy(isLoadingSubscribers = true, showSubscribersSheet = true) }
@@ -265,8 +246,6 @@ class ChannelViewModel @Inject constructor(
     }
 
     fun hideSubscribersSheet() = _detailState.update { it.copy(showSubscribersSheet = false) }
-
-    // ─── Создание канала ─────────────────────────────────────────────────────
 
     fun createChannel(handle: String, name: String, description: String, isPublic: Boolean) {
         viewModelScope.launch {
@@ -280,8 +259,6 @@ class ChannelViewModel @Inject constructor(
     }
 
     fun clearError() = _listState.update { it.copy(error = null) }
-
-    // ─── Посты ───────────────────────────────────────────────────────────────
 
     fun onPostTextChange(text: String) = _detailState.update { it.copy(postText = text) }
 
@@ -298,7 +275,6 @@ class ChannelViewModel @Inject constructor(
         }
     }
 
-    /** Загрузить .m4a и опубликовать в канал как голосовое сообщение. */
     fun postVoice(channelId: String, file: File, durationMs: Long, waveform: List<Int>) {
         viewModelScope.launch {
             _detailState.update { it.copy(isPosting = true) }
@@ -319,8 +295,6 @@ class ChannelViewModel @Inject constructor(
             }
         }
     }
-
-    // ─── Комментарии ────────────────────────────────────────────────────────
 
     fun toggleComments(channelId: String, messageId: String) {
         val state = _detailState.value
@@ -377,9 +351,6 @@ class ChannelViewModel @Inject constructor(
         }
     }
 
-    // ─── Реакции на посты ────────────────────────────────────────────────────
-
-    /** Ставим/снимаем реакцию на пост. Оптимистичное обновление + API. */
     fun toggleMessageReaction(messageId: String, emoji: String) {
         val current = _detailState.value.messageReactions[messageId]
         _detailState.update { state ->
@@ -409,9 +380,6 @@ class ChannelViewModel @Inject constructor(
         }
     }
 
-    // ─── Реакции на комментарии ──────────────────────────────────────────────
-
-    /** Ставим/снимаем реакцию на комментарий. Ключ = "messageId:commentId". Оптимистичное обновление + API. */
     fun toggleCommentReaction(messageId: String, commentId: String, emoji: String) {
         val key = "$messageId:$commentId"
         val current = _detailState.value.commentReactions[key]
