@@ -1,0 +1,9 @@
+.gradle/
+build/
+.idea/
+.kotlin/
+logs/
+uploads/
+*.iml
+.env
+firebase-service-account.json

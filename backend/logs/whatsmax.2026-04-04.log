@@ -1,0 +1,44 @@
+2026-04-04 12:47:15 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-04-04 12:47:18 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-04 12:47:21 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@79767781
+2026-04-04 12:47:21 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-04 12:47:25 [main] INFO  Application - Database connected and tables created
+2026-04-04 12:47:26 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-04-04 12:47:26 [main] INFO  Application - Application started in 11.606 seconds.
+2026-04-04 12:47:27 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-04-04 12:52:20 [eventLoopGroupProxy-3-7] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-04-04 12:52:21 [eventLoopGroupProxy-3-2] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-04-04 12:52:22 [eventLoopGroupProxy-3-6] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-04-04 12:52:22 [eventLoopGroupProxy-3-7] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-04-04 12:52:33 [eventLoopGroupProxy-3-7] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-04-04 12:52:33 [eventLoopGroupProxy-3-2] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-04-04 12:54:50 [eventLoopGroupProxy-3-9] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-04-04 12:54:50 [eventLoopGroupProxy-3-3] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-04-04 12:58:54 [eventLoopGroupProxy-3-8] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-04-04 12:58:54 [eventLoopGroupProxy-3-3] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-04-04 12:59:43 [eventLoopGroupProxy-3-2] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-04-04 12:59:43 [eventLoopGroupProxy-3-5] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-04-04 12:59:50 [eventLoopGroupProxy-3-1] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-04-04 12:59:50 [eventLoopGroupProxy-3-5] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-04-04 13:03:49 [eventLoopGroupProxy-3-8] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-04-04 13:03:49 [eventLoopGroupProxy-3-2] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-04-04 13:22:12 [eventLoopGroupProxy-3-7] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-04-04 13:22:12 [eventLoopGroupProxy-3-2] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-04-04 13:22:45 [eventLoopGroupProxy-3-3] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-04-04 13:22:45 [eventLoopGroupProxy-3-7] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-04-04 13:22:52 [eventLoopGroupProxy-3-3] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-04-04 13:22:52 [eventLoopGroupProxy-3-7] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-04-04 13:43:23 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-04-04 13:43:24 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-04 13:43:25 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5ecba515
+2026-04-04 13:43:25 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-04 13:43:26 [main] INFO  Application - Database connected and tables created
+2026-04-04 13:43:27 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-04-04 13:43:27 [main] INFO  Application - Application started in 4.411 seconds.
+2026-04-04 13:43:28 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-04-04 13:43:46 [eventLoopGroupProxy-3-5] INFO  com.whatsmax.websocket.WebSocketManager - User F8r65sCmG5deQvAwiEMthIYeQFD2 connected. Total online: 1
+2026-04-04 13:43:47 [eventLoopGroupProxy-3-9] INFO  WebSocketRoutes - User F8r65sCmG5deQvAwiEMthIYeQFD2 connected via WebSocket
+2026-04-04 13:44:34 [eventLoopGroupProxy-3-7] INFO  com.whatsmax.websocket.WebSocketManager - User F8r65sCmG5deQvAwiEMthIYeQFD2 disconnected. Total online: 0
+2026-04-04 13:44:34 [eventLoopGroupProxy-3-8] INFO  WebSocketRoutes - User F8r65sCmG5deQvAwiEMthIYeQFD2 disconnected
+2026-04-04 13:44:48 [eventLoopGroupProxy-3-7] INFO  com.whatsmax.websocket.WebSocketManager - User F8r65sCmG5deQvAwiEMthIYeQFD2 connected. Total online: 1
+2026-04-04 13:44:48 [eventLoopGroupProxy-3-2] INFO  WebSocketRoutes - User F8r65sCmG5deQvAwiEMthIYeQFD2 connected via WebSocket

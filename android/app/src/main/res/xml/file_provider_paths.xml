@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    res/xml/file_provider_paths.xml
+    Пути FileProvider для отправки файлов через Intent (камера, галерея).
+-->
+<paths>
+    <external-path name="external_files" path="."/>
+    <cache-path name="cache_files" path="."/>
+</paths>

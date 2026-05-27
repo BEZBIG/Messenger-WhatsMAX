@@ -1,0 +1,24 @@
+# Secrets
+.env
+**/firebase-service-account.json
+**/google-services.json
+
+# Backend build
+backend/build/
+backend/.gradle/
+backend/uploads/
+
+# Android build
+android/build/
+android/app/build/
+android/.gradle/
+android/local.properties
+android/captures/
+android/.idea/
+**/*.iml
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp

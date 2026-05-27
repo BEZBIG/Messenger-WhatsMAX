@@ -1,0 +1,630 @@
+2026-03-30 14:11:11 [main] INFO  ktor.application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 14:16:45 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 14:16:46 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 14:18:25 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 14:18:25 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 14:18:26 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@189b5fb1
+2026-03-30 14:18:26 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 14:18:26 [main] WARN  Exposed - Keyword identifier used: 'type'. Case sensitivity may not be kept when quoted by default: 'type'. To keep case sensitivity, opt-in and set 'preserveKeywordCasing' to true in DatabaseConfig block.
+2026-03-30 14:18:26 [main] WARN  Exposed - Keyword identifier used: 'name'. Case sensitivity may not be kept when quoted by default: 'name'. To keep case sensitivity, opt-in and set 'preserveKeywordCasing' to true in DatabaseConfig block.
+2026-03-30 14:18:26 [main] WARN  Exposed - Keyword identifier used: 'role'. Case sensitivity may not be kept when quoted by default: 'role'. To keep case sensitivity, opt-in and set 'preserveKeywordCasing' to true in DatabaseConfig block.
+2026-03-30 14:18:26 [main] WARN  Exposed - Keyword identifier used: 'content'. Case sensitivity may not be kept when quoted by default: 'content'. To keep case sensitivity, opt-in and set 'preserveKeywordCasing' to true in DatabaseConfig block.
+2026-03-30 14:18:26 [main] WARN  Exposed - Keyword identifier used: 'type'. Case sensitivity may not be kept when quoted by default: 'type'. To keep case sensitivity, opt-in and set 'preserveKeywordCasing' to true in DatabaseConfig block.
+2026-03-30 14:18:26 [main] WARN  Exposed - Keyword identifier used: 'name'. Case sensitivity may not be kept when quoted by default: 'name'. To keep case sensitivity, opt-in and set 'preserveKeywordCasing' to true in DatabaseConfig block.
+2026-03-30 14:18:26 [main] WARN  Exposed - Keyword identifier used: 'role'. Case sensitivity may not be kept when quoted by default: 'role'. To keep case sensitivity, opt-in and set 'preserveKeywordCasing' to true in DatabaseConfig block.
+2026-03-30 14:18:26 [main] WARN  Exposed - Keyword identifier used: 'content'. Case sensitivity may not be kept when quoted by default: 'content'. To keep case sensitivity, opt-in and set 'preserveKeywordCasing' to true in DatabaseConfig block.
+2026-03-30 14:18:26 [main] WARN  Exposed - Keyword identifier used: 'type'. Case sensitivity may not be kept when quoted by default: 'type'. To keep case sensitivity, opt-in and set 'preserveKeywordCasing' to true in DatabaseConfig block.
+2026-03-30 14:18:26 [main] WARN  Exposed - Keyword identifier used: 'views'. Case sensitivity may not be kept when quoted by default: 'views'. To keep case sensitivity, opt-in and set 'preserveKeywordCasing' to true in DatabaseConfig block.
+2026-03-30 14:18:26 [main] INFO  Application - Database connected and tables created
+2026-03-30 14:18:26 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 14:18:27 [main] INFO  Application - Application started in 1.774 seconds.
+2026-03-30 14:18:27 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 14:19:45 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 14:19:45 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 14:19:45 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@18324f97
+2026-03-30 14:19:45 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 14:19:46 [main] INFO  Application - Database connected and tables created
+2026-03-30 14:19:46 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 14:19:46 [main] INFO  Application - Application started in 1.626 seconds.
+2026-03-30 14:19:46 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 14:43:02 [eventLoopGroupProxy-4-5] ERROR Application - Unhandled exception
+io.ktor.server.plugins.BadRequestException: Failed to convert request body to class com.whatsmax.domain.models.CreateUserRequest
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt.convertBody(RequestConverter.kt:69)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt.access$convertBody(RequestConverter.kt:1)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1$1.invokeSuspend(RequestConverter.kt:40)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1$1.invoke(RequestConverter.kt)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1$1.invoke(RequestConverter.kt)
+	at io.ktor.server.application.OnCallReceiveContext.transformBody(KtorCallContexts.kt:65)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1.invokeSuspend(RequestConverter.kt:28)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1.invoke(RequestConverter.kt)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1.invoke(RequestConverter.kt)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$3.invokeSuspend(PluginBuilder.kt:163)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$3.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$3.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$2.invokeSuspend(PluginBuilder.kt:107)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$2.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$2.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhase$1.invokeSuspend(PluginBuilder.kt:215)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhase$1.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhase$1.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1$1.invokeSuspend(PluginBuilder.kt:198)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1$1.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1$1.invoke(PluginBuilder.kt)
+	at io.ktor.util.debug.ContextUtilsKt.addToContextInDebugMode(ContextUtils.kt:30)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1.invokeSuspend(PluginBuilder.kt:194)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1.invoke(PluginBuilder.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.util.pipeline.DebugPipelineContext.execute$ktor_utils(DebugPipelineContext.kt:63)
+	at io.ktor.util.pipeline.Pipeline.execute(Pipeline.kt:77)
+	at io.ktor.server.request.ApplicationReceiveFunctionsKt.receiveNullable(ApplicationReceiveFunctions.kt:103)
+	at com.whatsmax.routes.AuthRoutesKt$authRoutes$1$1$1.invokeSuspend(AuthRoutes.kt:78)
+	at com.whatsmax.routes.AuthRoutesKt$authRoutes$1$1$1.invoke(AuthRoutes.kt)
+	at com.whatsmax.routes.AuthRoutesKt$authRoutes$1$1$1.invoke(AuthRoutes.kt)
+	at io.ktor.server.routing.Route$buildPipeline$1$1.invokeSuspend(Route.kt:116)
+	at io.ktor.server.routing.Route$buildPipeline$1$1.invoke(Route.kt)
+	at io.ktor.server.routing.Route$buildPipeline$1$1.invoke(Route.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.util.pipeline.DebugPipelineContext.execute$ktor_utils(DebugPipelineContext.kt:63)
+	at io.ktor.util.pipeline.Pipeline.execute(Pipeline.kt:77)
+	at io.ktor.server.routing.Routing$executeResult$$inlined$execute$1.invokeSuspend(Pipeline.kt:478)
+	at io.ktor.server.routing.Routing$executeResult$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.server.routing.Routing$executeResult$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.util.debug.ContextUtilsKt.initContextInDebugMode(ContextUtils.kt:17)
+	at io.ktor.server.routing.Routing.executeResult(Routing.kt:190)
+	at io.ktor.server.routing.Routing.interceptor(Routing.kt:64)
+	at io.ktor.server.routing.Routing$Plugin$install$1.invokeSuspend(Routing.kt:140)
+	at io.ktor.server.routing.Routing$Plugin$install$1.invoke(Routing.kt)
+	at io.ktor.server.routing.Routing$Plugin$install$1.invoke(Routing.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.server.engine.BaseApplicationEngineKt$installDefaultTransformationChecker$1.invokeSuspend(BaseApplicationEngine.kt:124)
+	at io.ktor.server.engine.BaseApplicationEngineKt$installDefaultTransformationChecker$1.invoke(BaseApplicationEngine.kt)
+	at io.ktor.server.engine.BaseApplicationEngineKt$installDefaultTransformationChecker$1.invoke(BaseApplicationEngine.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.server.application.hooks.CallFailed$install$1$1.invokeSuspend(CommonHooks.kt:45)
+	at io.ktor.server.application.hooks.CallFailed$install$1$1.invoke(CommonHooks.kt)
+	at io.ktor.server.application.hooks.CallFailed$install$1$1.invoke(CommonHooks.kt)
+	at kotlinx.coroutines.intrinsics.UndispatchedKt.startUndispatchedOrReturn(Undispatched.kt:78)
+	at kotlinx.coroutines.CoroutineScopeKt.coroutineScope(CoroutineScope.kt:264)
+	at io.ktor.server.application.hooks.CallFailed$install$1.invokeSuspend(CommonHooks.kt:44)
+	at io.ktor.server.application.hooks.CallFailed$install$1.invoke(CommonHooks.kt)
+	at io.ktor.server.application.hooks.CallFailed$install$1.invoke(CommonHooks.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.util.pipeline.DebugPipelineContext.execute$ktor_utils(DebugPipelineContext.kt:63)
+	at io.ktor.util.pipeline.Pipeline.execute(Pipeline.kt:77)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1$invokeSuspend$$inlined$execute$1.invokeSuspend(Pipeline.kt:478)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1$invokeSuspend$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1$invokeSuspend$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.util.debug.ContextUtilsKt.initContextInDebugMode(ContextUtils.kt:17)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1.invokeSuspend(DefaultEnginePipeline.kt:123)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1.invoke(DefaultEnginePipeline.kt)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1.invoke(DefaultEnginePipeline.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.util.pipeline.DebugPipelineContext.execute$ktor_utils(DebugPipelineContext.kt:63)
+	at io.ktor.util.pipeline.Pipeline.execute(Pipeline.kt:77)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1$invokeSuspend$$inlined$execute$1.invokeSuspend(Pipeline.kt:478)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1$invokeSuspend$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1$invokeSuspend$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.util.debug.ContextUtilsKt.initContextInDebugMode(ContextUtils.kt:17)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1.invokeSuspend(NettyApplicationCallHandler.kt:119)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1.invoke(NettyApplicationCallHandler.kt)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1.invoke(NettyApplicationCallHandler.kt)
+	at kotlinx.coroutines.intrinsics.UndispatchedKt.startCoroutineUndispatched(Undispatched.kt:44)
+	at kotlinx.coroutines.CoroutineStart.invoke(CoroutineStart.kt:112)
+	at kotlinx.coroutines.AbstractCoroutine.start(AbstractCoroutine.kt:126)
+	at kotlinx.coroutines.BuildersKt__Builders_commonKt.launch(Builders.common.kt:56)
+	at kotlinx.coroutines.BuildersKt.launch(Unknown Source)
+	at io.ktor.server.netty.NettyApplicationCallHandler.handleRequest(NettyApplicationCallHandler.kt:37)
+	at io.ktor.server.netty.NettyApplicationCallHandler.channelRead(NettyApplicationCallHandler.kt:29)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+	at io.netty.channel.AbstractChannelHandlerContext.access$600(AbstractChannelHandlerContext.java:61)
+	at io.netty.channel.AbstractChannelHandlerContext$7.run(AbstractChannelHandlerContext.java:425)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:470)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.ktor.server.netty.EventLoopGroupProxy$Companion.create$lambda$1$lambda$0(NettyApplicationEngine.kt:296)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.ktor.serialization.JsonConvertException: Illegal input: Field 'displayName' is required for type with serial name 'com.whatsmax.domain.models.CreateUserRequest', but it was missing at path: $
+	at io.ktor.serialization.kotlinx.KotlinxSerializationConverter.deserialize(KotlinxSerializationConverter.kt:90)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt.convertBody(RequestConverter.kt:67)
+	... 104 common frames omitted
+Caused by: kotlinx.serialization.MissingFieldException: Field 'displayName' is required for type with serial name 'com.whatsmax.domain.models.CreateUserRequest', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:93)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:107)
+	at io.ktor.serialization.kotlinx.KotlinxSerializationConverter.deserialize(KotlinxSerializationConverter.kt:82)
+	... 105 common frames omitted
+Caused by: kotlinx.serialization.MissingFieldException: Field 'displayName' is required for type with serial name 'com.whatsmax.domain.models.CreateUserRequest', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at com.whatsmax.domain.models.CreateUserRequest.<init>(Models.kt:27)
+	at com.whatsmax.domain.models.CreateUserRequest$$serializer.deserialize(Models.kt:27)
+	at com.whatsmax.domain.models.CreateUserRequest$$serializer.deserialize(Models.kt:27)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:70)
+	... 107 common frames omitted
+2026-03-30 14:47:02 [eventLoopGroupProxy-4-5] ERROR Application - Unhandled exception
+io.ktor.server.plugins.BadRequestException: Failed to convert request body to class com.whatsmax.domain.models.CreateUserRequest
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt.convertBody(RequestConverter.kt:69)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt.access$convertBody(RequestConverter.kt:1)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1$1.invokeSuspend(RequestConverter.kt:40)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1$1.invoke(RequestConverter.kt)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1$1.invoke(RequestConverter.kt)
+	at io.ktor.server.application.OnCallReceiveContext.transformBody(KtorCallContexts.kt:65)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1.invokeSuspend(RequestConverter.kt:28)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1.invoke(RequestConverter.kt)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt$convertRequestBody$1.invoke(RequestConverter.kt)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$3.invokeSuspend(PluginBuilder.kt:163)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$3.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$3.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$2.invokeSuspend(PluginBuilder.kt:107)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$2.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onCallReceive$2.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhase$1.invokeSuspend(PluginBuilder.kt:215)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhase$1.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhase$1.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1$1.invokeSuspend(PluginBuilder.kt:198)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1$1.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1$1.invoke(PluginBuilder.kt)
+	at io.ktor.util.debug.ContextUtilsKt.addToContextInDebugMode(ContextUtils.kt:30)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1.invokeSuspend(PluginBuilder.kt:194)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1.invoke(PluginBuilder.kt)
+	at io.ktor.server.application.PluginBuilder$onDefaultPhaseWithMessage$1$1.invoke(PluginBuilder.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.util.pipeline.DebugPipelineContext.execute$ktor_utils(DebugPipelineContext.kt:63)
+	at io.ktor.util.pipeline.Pipeline.execute(Pipeline.kt:77)
+	at io.ktor.server.request.ApplicationReceiveFunctionsKt.receiveNullable(ApplicationReceiveFunctions.kt:103)
+	at com.whatsmax.routes.AuthRoutesKt$authRoutes$1$1$1.invokeSuspend(AuthRoutes.kt:78)
+	at com.whatsmax.routes.AuthRoutesKt$authRoutes$1$1$1.invoke(AuthRoutes.kt)
+	at com.whatsmax.routes.AuthRoutesKt$authRoutes$1$1$1.invoke(AuthRoutes.kt)
+	at io.ktor.server.routing.Route$buildPipeline$1$1.invokeSuspend(Route.kt:116)
+	at io.ktor.server.routing.Route$buildPipeline$1$1.invoke(Route.kt)
+	at io.ktor.server.routing.Route$buildPipeline$1$1.invoke(Route.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.util.pipeline.DebugPipelineContext.execute$ktor_utils(DebugPipelineContext.kt:63)
+	at io.ktor.util.pipeline.Pipeline.execute(Pipeline.kt:77)
+	at io.ktor.server.routing.Routing$executeResult$$inlined$execute$1.invokeSuspend(Pipeline.kt:478)
+	at io.ktor.server.routing.Routing$executeResult$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.server.routing.Routing$executeResult$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.util.debug.ContextUtilsKt.initContextInDebugMode(ContextUtils.kt:17)
+	at io.ktor.server.routing.Routing.executeResult(Routing.kt:190)
+	at io.ktor.server.routing.Routing.interceptor(Routing.kt:64)
+	at io.ktor.server.routing.Routing$Plugin$install$1.invokeSuspend(Routing.kt:140)
+	at io.ktor.server.routing.Routing$Plugin$install$1.invoke(Routing.kt)
+	at io.ktor.server.routing.Routing$Plugin$install$1.invoke(Routing.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.server.engine.BaseApplicationEngineKt$installDefaultTransformationChecker$1.invokeSuspend(BaseApplicationEngine.kt:124)
+	at io.ktor.server.engine.BaseApplicationEngineKt$installDefaultTransformationChecker$1.invoke(BaseApplicationEngine.kt)
+	at io.ktor.server.engine.BaseApplicationEngineKt$installDefaultTransformationChecker$1.invoke(BaseApplicationEngine.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.server.application.hooks.CallFailed$install$1$1.invokeSuspend(CommonHooks.kt:45)
+	at io.ktor.server.application.hooks.CallFailed$install$1$1.invoke(CommonHooks.kt)
+	at io.ktor.server.application.hooks.CallFailed$install$1$1.invoke(CommonHooks.kt)
+	at kotlinx.coroutines.intrinsics.UndispatchedKt.startUndispatchedOrReturn(Undispatched.kt:78)
+	at kotlinx.coroutines.CoroutineScopeKt.coroutineScope(CoroutineScope.kt:264)
+	at io.ktor.server.application.hooks.CallFailed$install$1.invokeSuspend(CommonHooks.kt:44)
+	at io.ktor.server.application.hooks.CallFailed$install$1.invoke(CommonHooks.kt)
+	at io.ktor.server.application.hooks.CallFailed$install$1.invoke(CommonHooks.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.util.pipeline.DebugPipelineContext.execute$ktor_utils(DebugPipelineContext.kt:63)
+	at io.ktor.util.pipeline.Pipeline.execute(Pipeline.kt:77)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1$invokeSuspend$$inlined$execute$1.invokeSuspend(Pipeline.kt:478)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1$invokeSuspend$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1$invokeSuspend$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.util.debug.ContextUtilsKt.initContextInDebugMode(ContextUtils.kt:17)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1.invokeSuspend(DefaultEnginePipeline.kt:123)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1.invoke(DefaultEnginePipeline.kt)
+	at io.ktor.server.engine.DefaultEnginePipelineKt$defaultEnginePipeline$1.invoke(DefaultEnginePipeline.kt)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceedLoop(DebugPipelineContext.kt:80)
+	at io.ktor.util.pipeline.DebugPipelineContext.proceed(DebugPipelineContext.kt:57)
+	at io.ktor.util.pipeline.DebugPipelineContext.execute$ktor_utils(DebugPipelineContext.kt:63)
+	at io.ktor.util.pipeline.Pipeline.execute(Pipeline.kt:77)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1$invokeSuspend$$inlined$execute$1.invokeSuspend(Pipeline.kt:478)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1$invokeSuspend$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1$invokeSuspend$$inlined$execute$1.invoke(Pipeline.kt)
+	at io.ktor.util.debug.ContextUtilsKt.initContextInDebugMode(ContextUtils.kt:17)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1.invokeSuspend(NettyApplicationCallHandler.kt:119)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1.invoke(NettyApplicationCallHandler.kt)
+	at io.ktor.server.netty.NettyApplicationCallHandler$handleRequest$1.invoke(NettyApplicationCallHandler.kt)
+	at kotlinx.coroutines.intrinsics.UndispatchedKt.startCoroutineUndispatched(Undispatched.kt:44)
+	at kotlinx.coroutines.CoroutineStart.invoke(CoroutineStart.kt:112)
+	at kotlinx.coroutines.AbstractCoroutine.start(AbstractCoroutine.kt:126)
+	at kotlinx.coroutines.BuildersKt__Builders_commonKt.launch(Builders.common.kt:56)
+	at kotlinx.coroutines.BuildersKt.launch(Unknown Source)
+	at io.ktor.server.netty.NettyApplicationCallHandler.handleRequest(NettyApplicationCallHandler.kt:37)
+	at io.ktor.server.netty.NettyApplicationCallHandler.channelRead(NettyApplicationCallHandler.kt:29)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+	at io.netty.channel.AbstractChannelHandlerContext.access$600(AbstractChannelHandlerContext.java:61)
+	at io.netty.channel.AbstractChannelHandlerContext$7.run(AbstractChannelHandlerContext.java:425)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:470)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.ktor.server.netty.EventLoopGroupProxy$Companion.create$lambda$1$lambda$0(NettyApplicationEngine.kt:296)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.ktor.serialization.JsonConvertException: Illegal input: Field 'displayName' is required for type with serial name 'com.whatsmax.domain.models.CreateUserRequest', but it was missing at path: $
+	at io.ktor.serialization.kotlinx.KotlinxSerializationConverter.deserialize(KotlinxSerializationConverter.kt:90)
+	at io.ktor.server.plugins.contentnegotiation.RequestConverterKt.convertBody(RequestConverter.kt:67)
+	... 104 common frames omitted
+Caused by: kotlinx.serialization.MissingFieldException: Field 'displayName' is required for type with serial name 'com.whatsmax.domain.models.CreateUserRequest', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:93)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:107)
+	at io.ktor.serialization.kotlinx.KotlinxSerializationConverter.deserialize(KotlinxSerializationConverter.kt:82)
+	... 105 common frames omitted
+Caused by: kotlinx.serialization.MissingFieldException: Field 'displayName' is required for type with serial name 'com.whatsmax.domain.models.CreateUserRequest', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at com.whatsmax.domain.models.CreateUserRequest.<init>(Models.kt:27)
+	at com.whatsmax.domain.models.CreateUserRequest$$serializer.deserialize(Models.kt:27)
+	at com.whatsmax.domain.models.CreateUserRequest$$serializer.deserialize(Models.kt:27)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:70)
+	... 107 common frames omitted
+2026-03-30 14:48:27 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 14:48:27 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 14:48:28 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@13cd7ea5
+2026-03-30 14:48:28 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 14:48:28 [main] INFO  Application - Database connected and tables created
+2026-03-30 14:48:28 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 14:48:29 [main] INFO  Application - Application started in 1.815 seconds.
+2026-03-30 14:48:29 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 14:51:35 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChatRepositoryImpl$createChat$2.invokeSuspend(ChatRepositoryImpl.kt:42)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 14:51:41 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChatRepositoryImpl$createChat$2.invokeSuspend(ChatRepositoryImpl.kt:42)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 14:51:51 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChatRepositoryImpl$createChat$2.invokeSuspend(ChatRepositoryImpl.kt:42)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 14:59:09 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 14:59:10 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 14:59:10 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@18324f97
+2026-03-30 14:59:10 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 14:59:11 [main] INFO  Application - Database connected and tables created
+2026-03-30 14:59:11 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 14:59:11 [main] INFO  Application - Application started in 2.365 seconds.
+2026-03-30 14:59:12 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 14:59:28 [eventLoopGroupProxy-3-6] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-03-30 14:59:28 [eventLoopGroupProxy-3-1] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-03-30 14:59:53 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChatRepositoryImpl$createChat$2.invokeSuspend(ChatRepositoryImpl.kt:42)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 15:00:06 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChatRepositoryImpl$createChat$2.invokeSuspend(ChatRepositoryImpl.kt:42)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 15:00:08 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChatRepositoryImpl$createChat$2.invokeSuspend(ChatRepositoryImpl.kt:42)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 15:00:18 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChannelRepositoryImpl$createChannel$2.invokeSuspend(ChannelRepositoryImpl.kt:47)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 15:00:23 [eventLoopGroupProxy-3-9] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-03-30 15:00:23 [eventLoopGroupProxy-3-1] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-03-30 18:14:28 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 18:14:29 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 18:14:29 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@189b5fb1
+2026-03-30 18:14:29 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 18:14:30 [main] INFO  Application - Database connected and tables created
+2026-03-30 18:14:30 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 18:14:30 [main] INFO  Application - Application started in 2.176 seconds.
+2026-03-30 18:14:31 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 18:16:13 [eventLoopGroupProxy-4-2] WARN  Authentication - Firebase token verification failed: Firebase ID token has expired. Get a fresh ID token and try again. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token.
+2026-03-30 18:16:16 [eventLoopGroupProxy-3-3] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-03-30 18:16:16 [eventLoopGroupProxy-3-7] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-03-30 18:16:28 [eventLoopGroupProxy-4-2] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChatRepositoryImpl$createChat$2.invokeSuspend(ChatRepositoryImpl.kt:42)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:16:52 [eventLoopGroupProxy-4-2] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChannelRepositoryImpl$createChannel$2.invokeSuspend(ChannelRepositoryImpl.kt:47)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:18:20 [eventLoopGroupProxy-3-4] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-03-30 18:18:20 [eventLoopGroupProxy-3-8] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-03-30 18:20:47 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 18:20:47 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 18:20:48 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@13cd7ea5
+2026-03-30 18:20:48 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 18:20:48 [main] INFO  Application - Database connected and tables created
+2026-03-30 18:20:48 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 18:20:48 [main] INFO  Application - Application started in 1.758 seconds.
+2026-03-30 18:20:49 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 18:21:10 [eventLoopGroupProxy-3-6] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-03-30 18:21:10 [eventLoopGroupProxy-3-1] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-03-30 18:21:20 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChatRepositoryImpl$createChat$2.invokeSuspend(ChatRepositoryImpl.kt:42)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:21:44 [eventLoopGroupProxy-3-1] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-03-30 18:21:44 [eventLoopGroupProxy-3-2] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-03-30 18:30:08 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 18:30:09 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 18:30:09 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5486887b
+2026-03-30 18:30:09 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 18:30:10 [main] INFO  Application - Database connected and tables created
+2026-03-30 18:30:10 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 18:30:10 [main] INFO  Application - Application started in 1.805 seconds.
+2026-03-30 18:30:10 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 18:30:22 [eventLoopGroupProxy-3-6] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-03-30 18:30:22 [eventLoopGroupProxy-3-1] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-03-30 18:30:54 [eventLoopGroupProxy-4-2] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.ChatRepositoryImpl$createChat$2.invokeSuspend(ChatRepositoryImpl.kt:42)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:30:59 [eventLoopGroupProxy-3-1] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-03-30 18:30:59 [eventLoopGroupProxy-3-2] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-03-30 18:31:51 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 18:31:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 18:31:51 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1c025cb
+2026-03-30 18:31:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 18:31:52 [main] INFO  Application - Database connected and tables created
+2026-03-30 18:31:52 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 18:31:52 [main] INFO  Application - Application started in 1.735 seconds.
+2026-03-30 18:31:52 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 18:32:00 [eventLoopGroupProxy-3-6] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-03-30 18:32:00 [eventLoopGroupProxy-3-1] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-03-30 18:32:16 [eventLoopGroupProxy-4-2] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.MessageRepositoryImpl$sendMessage$2.invokeSuspend(MessageRepositoryImpl.kt:54)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:32:21 [eventLoopGroupProxy-4-2] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.MessageRepositoryImpl$sendMessage$2.invokeSuspend(MessageRepositoryImpl.kt:54)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:32:23 [eventLoopGroupProxy-4-2] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.MessageRepositoryImpl$sendMessage$2.invokeSuspend(MessageRepositoryImpl.kt:54)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:32:51 [eventLoopGroupProxy-4-2] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.MessageRepositoryImpl$sendMessage$2.invokeSuspend(MessageRepositoryImpl.kt:54)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:34:52 [eventLoopGroupProxy-4-2] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.MessageRepositoryImpl$sendMessage$2.invokeSuspend(MessageRepositoryImpl.kt:54)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:35:11 [eventLoopGroupProxy-3-9] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-03-30 18:35:11 [eventLoopGroupProxy-3-1] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-03-30 18:40:38 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 18:40:38 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 18:40:38 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@13cd7ea5
+2026-03-30 18:40:38 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 18:40:39 [main] INFO  Application - Database connected and tables created
+2026-03-30 18:40:39 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 18:40:39 [main] INFO  Application - Application started in 1.665 seconds.
+2026-03-30 18:40:39 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 18:42:18 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 18:42:19 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 18:42:19 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@189b5fb1
+2026-03-30 18:42:19 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 18:42:20 [main] INFO  Application - Database connected and tables created
+2026-03-30 18:42:20 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 18:42:20 [main] INFO  Application - Application started in 1.549 seconds.
+2026-03-30 18:42:20 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 18:43:01 [eventLoopGroupProxy-3-6] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-03-30 18:43:01 [eventLoopGroupProxy-3-1] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-03-30 18:43:06 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.MessageRepositoryImpl$sendMessage$2.invokeSuspend(MessageRepositoryImpl.kt:54)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:43:39 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.MessageRepositoryImpl$sendMessage$2.invokeSuspend(MessageRepositoryImpl.kt:54)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:43:42 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.MessageRepositoryImpl$sendMessage$2.invokeSuspend(MessageRepositoryImpl.kt:54)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:50:04 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 18:50:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 18:50:05 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@68809cc7
+2026-03-30 18:50:05 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 18:50:05 [main] INFO  Application - Database connected and tables created
+2026-03-30 18:50:05 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 18:50:06 [main] INFO  Application - Application started in 1.85 seconds.
+2026-03-30 18:50:06 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 18:50:50 [eventLoopGroupProxy-3-6] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-03-30 18:50:50 [eventLoopGroupProxy-3-1] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket
+2026-03-30 18:50:56 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.MessageRepositoryImpl$sendMessage$2.invokeSuspend(MessageRepositoryImpl.kt:54)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:51:46 [eventLoopGroupProxy-4-1] ERROR Application - Unhandled exception
+java.lang.NullPointerException: null
+	at com.whatsmax.data.repositories.MessageRepositoryImpl$sendMessage$2.invokeSuspend(MessageRepositoryImpl.kt:54)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:115)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:103)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:584)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:793)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:697)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:684)
+2026-03-30 18:51:56 [eventLoopGroupProxy-3-7] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected. Total online: 0
+2026-03-30 18:51:56 [eventLoopGroupProxy-3-1] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 disconnected
+2026-03-30 23:51:46 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 23:51:46 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 23:51:47 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@71178a52
+2026-03-30 23:51:47 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 23:51:48 [main] INFO  Application - Database connected and tables created
+2026-03-30 23:51:49 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 23:51:49 [main] INFO  Application - Application started in 3.279 seconds.
+2026-03-30 23:51:49 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 23:52:42 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 23:52:42 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 23:52:43 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@9a7a808
+2026-03-30 23:52:43 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 23:52:43 [main] INFO  Application - Database connected and tables created
+2026-03-30 23:52:43 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 23:52:43 [main] INFO  Application - Application started in 1.572 seconds.
+2026-03-30 23:54:13 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-03-30 23:54:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-30 23:54:14 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@9a7a808
+2026-03-30 23:54:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-30 23:54:14 [main] INFO  Application - Database connected and tables created
+2026-03-30 23:54:15 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-03-30 23:54:15 [main] INFO  Application - Application started in 1.568 seconds.
+2026-03-30 23:54:15 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-03-30 23:55:32 [eventLoopGroupProxy-3-6] INFO  com.whatsmax.websocket.WebSocketManager - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected. Total online: 1
+2026-03-30 23:55:32 [eventLoopGroupProxy-3-1] INFO  WebSocketRoutes - User 7ZS5UWLCNwPrefGTOfHVbrd6UUq1 connected via WebSocket

@@ -1,0 +1,42 @@
+<!--
+    res/values/strings.xml
+    Строковые ресурсы приложения WhatsMAX.
+-->
+<resources>
+    <string name="app_name">WhatsMAX</string>
+    <string name="login_title">Добро пожаловать</string>
+    <string name="login_subtitle">Войдите в WhatsMAX</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Пароль</string>
+    <string name="login_btn">Войти</string>
+    <string name="register_btn">Зарегистрироваться</string>
+    <string name="no_account">Нет аккаунта? </string>
+    <string name="have_account">Уже есть аккаунт? </string>
+    <string name="chats_title">Чаты</string>
+    <string name="channels_title">Каналы</string>
+    <string name="calls_title">Звонки</string>
+    <string name="profile_title">Профиль</string>
+    <string name="new_message_hint">Сообщение...</string>
+    <string name="send_btn">Отправить</string>
+    <string name="loading">Загрузка...</string>
+    <string name="error_network">Нет соединения с сервером</string>
+    <string name="error_auth">Ошибка авторизации</string>
+    <string name="online">в сети</string>
+    <string name="offline">не в сети</string>
+    <string name="typing">печатает...</string>
+    <string name="new_chat">Новый чат</string>
+    <string name="new_group">Новая группа</string>
+    <string name="new_channel">Новый канал</string>
+    <string name="search_hint">Поиск...</string>
+    <string name="call_btn">Позвонить</string>
+    <string name="video_call_btn">Видеозвонок</string>
+    <string name="attach_file">Прикрепить файл</string>
+    <string name="camera">Камера</string>
+    <string name="gallery">Галерея</string>
+    <string name="edit_message">Редактировать</string>
+    <string name="delete_message">Удалить</string>
+    <string name="reply">Ответить</string>
+    <string name="subscribe">Подписаться</string>
+    <string name="unsubscribe">Отписаться</string>
+    <string name="members_count">%d подписчиков</string>
+</resources>

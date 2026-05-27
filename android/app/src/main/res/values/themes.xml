@@ -1,0 +1,15 @@
+<!--
+    res/values/themes.xml
+    Темы Material3 для WhatsMAX. Основной цвет — Telegram-подобный синий.
+-->
+<resources>
+    <style name="Theme.WhatsMAX" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.WhatsMAX.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#0088CC</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.WhatsMAX</item>
+    </style>
+</resources>

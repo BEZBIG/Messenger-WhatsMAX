@@ -1,0 +1,12 @@
+2026-05-20 13:58:09 [main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2026-05-20 13:58:10 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-20 13:58:10 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@abbc908
+2026-05-20 13:58:10 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-20 13:58:11 [main] INFO  Application - Database connected and tables created
+2026-05-20 13:58:11 [main] INFO  com.whatsmax.utils.FirebaseAdmin - Firebase Admin SDK initialized successfully
+2026-05-20 13:58:11 [main] INFO  Application - Application started in 2.511 seconds.
+2026-05-20 13:58:12 [main] INFO  Application - Responding at http://127.0.0.1:8080
+2026-05-20 13:59:38 [eventLoopGroupProxy-3-6] INFO  com.whatsmax.websocket.WebSocketManager - User F8r65sCmG5deQvAwiEMthIYeQFD2 connected. Total online: 1
+2026-05-20 13:59:38 [eventLoopGroupProxy-3-2] INFO  WebSocketRoutes - User F8r65sCmG5deQvAwiEMthIYeQFD2 connected via WebSocket
+2026-05-20 14:02:05 [eventLoopGroupProxy-3-6] INFO  com.whatsmax.websocket.WebSocketManager - User F8r65sCmG5deQvAwiEMthIYeQFD2 disconnected. Total online: 0
+2026-05-20 14:02:06 [eventLoopGroupProxy-3-7] INFO  WebSocketRoutes - User F8r65sCmG5deQvAwiEMthIYeQFD2 disconnected
