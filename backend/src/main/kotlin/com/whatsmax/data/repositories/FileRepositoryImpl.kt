@@ -37,7 +37,7 @@ class FileRepositoryImpl : FileRepository {
             it[FilesTable.sizeBytes]    = sizeBytes
             it[FilesTable.uploadedBy]   = uploadedBy
         }
-        getFileById(fileId)!!
+        FilesTable.select { FilesTable.id eq fileId }.single().toFileInfo()
     }
 
     override suspend fun saveObjectInfo(
@@ -56,7 +56,7 @@ class FileRepositoryImpl : FileRepository {
             it[FilesTable.objectKey]    = objectKey
             it[FilesTable.thumbObjectKey] = thumbObjectKey
         }
-        getFileById(fileId)!!
+        FilesTable.select { FilesTable.id eq fileId }.single().toFileInfo()
     }
 
     override suspend fun findBySha256(sha256: String): FileInfo? = dbQuery {
