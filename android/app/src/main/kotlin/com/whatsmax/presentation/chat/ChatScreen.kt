@@ -28,6 +28,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.time.LocalDate
@@ -41,6 +42,7 @@ import com.whatsmax.domain.model.ChatType
 import com.whatsmax.domain.model.Message
 import com.whatsmax.domain.model.MessageType
 import com.whatsmax.presentation.theme.OnlineIndicator
+import com.whatsmax.presentation.theme.WhatsMAXTheme
 import com.whatsmax.presentation.theme.messageBubbleOther
 import com.whatsmax.presentation.theme.messageBubbleOwn
 import com.whatsmax.presentation.voice.VoiceMessagePlayer
@@ -698,6 +700,112 @@ private fun String.toHHmm(): String = try {
     val sep = indexOfFirst { it == 'T' || it == ' ' }
     if (sep >= 0 && length > sep + 5) substring(sep + 1, sep + 6) else ""
 } catch (e: Exception) { "" }
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun ChatScreenPreview() {
+    WhatsMAXTheme {
+        Scaffold(
+            topBar = {
+                @OptIn(ExperimentalMaterial3Api::class)
+                TopAppBar(
+                    navigationIcon = { IconButton(onClick = {}) { Icon(Icons.Default.ArrowBack, "Назад") } },
+                    title = {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Box(
+                                modifier = Modifier.size(36.dp).clip(CircleShape)
+                                    .background(MaterialTheme.colorScheme.primaryContainer),
+                                contentAlignment = Alignment.Center
+                            ) { Text("Н", fontSize = 16.sp, fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer) }
+                            Spacer(Modifier.width(10.dp))
+                            Column {
+                                Text("Никита", fontWeight = FontWeight.SemiBold)
+                                Text("в сети", fontSize = 12.sp, color = OnlineIndicator)
+                            }
+                        }
+                    },
+                    actions = {
+                        IconButton({}) { Icon(Icons.Default.Phone, "Звонок") }
+                        IconButton({}) { Icon(Icons.Default.Videocam, "Видеозвонок") }
+                    }
+                )
+            },
+            bottomBar = {
+                Surface(shadowElevation = 8.dp) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        IconButton(onClick = {}) {
+                            Icon(Icons.Default.AttachFile, "Прикрепить", tint = MaterialTheme.colorScheme.primary)
+                        }
+                        OutlinedTextField(
+                            value = "", onValueChange = {},
+                            placeholder = { Text("Сообщение...") },
+                            modifier = Modifier.weight(1f), maxLines = 5,
+                            shape = RoundedCornerShape(24.dp)
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Box(
+                            modifier = Modifier.size(48.dp).clip(CircleShape)
+                                .background(MaterialTheme.colorScheme.primary),
+                            contentAlignment = Alignment.Center
+                        ) { Icon(Icons.Default.Mic, "Запись", tint = Color.White) }
+                    }
+                }
+            }
+        ) { padding ->
+            val bubbleOwn = messageBubbleOwn
+            val bubbleOther = messageBubbleOther
+            LazyColumn(
+                contentPadding = PaddingValues(
+                    top = padding.calculateTopPadding() + 8.dp,
+                    bottom = padding.calculateBottomPadding() + 8.dp,
+                    start = 8.dp, end = 8.dp
+                ),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                item {
+                    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                        Surface(shape = RoundedCornerShape(12.dp),
+                            color = MaterialTheme.colorScheme.surfaceVariant.copy(0.8f)) {
+                            Text("Сегодня", fontSize = 12.sp, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
+                        }
+                    }
+                }
+                item {
+                    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterStart) {
+                        Column(
+                            modifier = Modifier.widthIn(max = 260.dp).clip(RoundedCornerShape(4.dp, 16.dp, 16.dp, 16.dp))
+                                .background(bubbleOther).padding(horizontal = 10.dp, vertical = 6.dp)
+                        ) {
+                            Text("Никита", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.primary, fontSize = 13.sp)
+                            Text("Привет! Как дела?", fontSize = 15.sp)
+                            Text("20:35", fontSize = 11.sp, color = Color.Gray, modifier = Modifier.align(Alignment.End))
+                        }
+                    }
+                }
+                item {
+                    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
+                        Column(
+                            modifier = Modifier.widthIn(max = 260.dp).clip(RoundedCornerShape(16.dp, 4.dp, 16.dp, 16.dp))
+                                .background(bubbleOwn).padding(horizontal = 10.dp, vertical = 6.dp)
+                        ) {
+                            Text("Hello World!", fontSize = 15.sp)
+                            Row(modifier = Modifier.align(Alignment.End), verticalAlignment = Alignment.CenterVertically) {
+                                Text("20:37", fontSize = 11.sp, color = Color.Gray)
+                                Spacer(Modifier.width(2.dp))
+                                Icon(Icons.Default.DoneAll, null, modifier = Modifier.size(14.dp),
+                                    tint = MaterialTheme.colorScheme.primary)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 private fun String.toDateLabel(serverToday: String): String {
     return try {

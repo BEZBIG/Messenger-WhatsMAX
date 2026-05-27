@@ -18,7 +18,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.whatsmax.presentation.theme.OnlineIndicator
+import com.whatsmax.presentation.theme.WhatsMAXTheme
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -329,6 +331,75 @@ fun UserProfileScreen(
                 TextButton({ showBlockDialog = false }) { Text("Отмена") }
             }
         )
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun UserProfileScreenPreview() {
+    WhatsMAXTheme {
+        Scaffold(
+            topBar = {
+                @OptIn(ExperimentalMaterial3Api::class)
+                TopAppBar(
+                    navigationIcon = { IconButton({}) { Icon(Icons.Default.ArrowBack, null) } },
+                    title = { Text("Профиль") },
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
+                )
+            }
+        ) { padding ->
+            Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
+                Box(
+                    modifier = Modifier.fillMaxWidth().height(260.dp)
+                        .background(Brush.verticalGradient(listOf(
+                            MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
+                            MaterialTheme.colorScheme.primaryContainer
+                        ))).padding(padding),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(bottom = 24.dp)) {
+                        Box(
+                            modifier = Modifier.size(90.dp).clip(CircleShape)
+                                .background(Color.White.copy(alpha = 0.3f)),
+                            contentAlignment = Alignment.Center
+                        ) { Text("Н", fontSize = 36.sp, fontWeight = FontWeight.Bold, color = Color.White) }
+                        Spacer(Modifier.height(10.dp))
+                        Text("Никита", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                        Text("@nikita", fontSize = 14.sp, color = Color.White.copy(0.85f))
+                        Spacer(Modifier.height(4.dp))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Box(Modifier.size(8.dp).clip(CircleShape).background(OnlineIndicator))
+                            Spacer(Modifier.width(5.dp))
+                            Text("в сети", fontSize = 12.sp, color = Color.White.copy(0.8f))
+                        }
+                    }
+                }
+                Surface(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).offset(y = (-28).dp),
+                    shape = RoundedCornerShape(16.dp), tonalElevation = 4.dp, shadowElevation = 4.dp
+                ) {
+                    Row(Modifier.fillMaxWidth().padding(vertical = 16.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
+                        ActionButton(icon = Icons.Default.Message, label = "Написать", onClick = {})
+                        ActionButton(icon = Icons.Default.Phone, label = "Позвонить", onClick = {})
+                        ActionButton(icon = Icons.Default.Videocam, label = "Видео", onClick = {})
+                        ActionButton(icon = Icons.Default.Block, label = "Заблокировать",
+                            tint = MaterialTheme.colorScheme.error, onClick = {})
+                    }
+                }
+                Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(top = 16.dp)) {
+                    InfoCard(title = "О себе") {
+                        Text("Разработчик мобильных приложений", fontSize = 15.sp,
+                            color = MaterialTheme.colorScheme.onSurface)
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    InfoCard(title = "Контакт") {
+                        InfoRow(Icons.Default.AlternateEmail, "nikita")
+                        InfoRow(Icons.Default.Email, "nikita@example.com")
+                        InfoRow(Icons.Default.Circle, "Сейчас в сети", tint = OnlineIndicator)
+                    }
+                }
+            }
+        }
     }
 }
 

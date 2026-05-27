@@ -19,10 +19,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.whatsmax.presentation.theme.WhatsMAXTheme
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import coil.compose.AsyncImage
@@ -382,6 +384,68 @@ private fun NewDirectChatDialog(
         },
         confirmButton = { TextButton(onDismiss) { Text("Отмена") } }
     )
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun HomeScreenPreview() {
+    WhatsMAXTheme {
+        Scaffold(
+            topBar = {
+                @OptIn(ExperimentalMaterial3Api::class)
+                TopAppBar(
+                    title = { Text("WhatsMAX", fontWeight = FontWeight.Bold) },
+                    actions = {
+                        IconButton(onClick = {}) { Icon(Icons.Default.Newspaper, "Каналы") }
+                        IconButton(onClick = {}) { Icon(Icons.Default.Person, "Профиль") }
+                    }
+                )
+            },
+            floatingActionButton = {
+                FloatingActionButton(onClick = {}) { Icon(Icons.Default.Edit, "Новый чат") }
+            }
+        ) { padding ->
+            Column(Modifier.fillMaxSize().padding(padding)) {
+                OutlinedTextField(
+                    value = "", onValueChange = {},
+                    placeholder = { Text("Поиск чатов и пользователей...") },
+                    leadingIcon = { Icon(Icons.Default.Search, null) },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
+                    shape = MaterialTheme.shapes.extraLarge
+                )
+                val sampleChats = listOf(
+                    Triple("Никита", "Привет! Как дела?", "20:37"),
+                    Triple("Команда проекта", "Завтра созвон в 10:00", "19:15"),
+                    Triple("Мария", "Фото", "18:40")
+                )
+                sampleChats.forEach { (name, msg, time) ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Box(Modifier.size(52.dp).clip(CircleShape), contentAlignment = Alignment.Center) {
+                            Surface(color = MaterialTheme.colorScheme.primaryContainer, shape = CircleShape,
+                                modifier = Modifier.fillMaxSize()) {}
+                            Text(name.first().uppercase(), color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                        }
+                        Spacer(Modifier.width(12.dp))
+                        Column(Modifier.weight(1f)) {
+                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                Text(name, fontWeight = FontWeight.SemiBold)
+                                Text(time, style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
+                            }
+                            Text(msg, style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurface.copy(0.6f), maxLines = 1)
+                        }
+                    }
+                    HorizontalDivider(modifier = Modifier.padding(start = 72.dp))
+                }
+            }
+        }
+    }
 }
 
 @Composable

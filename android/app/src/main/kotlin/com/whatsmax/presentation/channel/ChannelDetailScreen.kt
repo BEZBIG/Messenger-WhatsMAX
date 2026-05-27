@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import android.Manifest
@@ -38,6 +39,7 @@ import com.whatsmax.domain.model.ChannelComment
 import com.whatsmax.domain.model.ChannelMessage
 import com.whatsmax.domain.model.MessageType
 import com.whatsmax.domain.model.User
+import com.whatsmax.presentation.theme.WhatsMAXTheme
 import com.whatsmax.presentation.voice.VoiceMessagePlayer
 import com.whatsmax.presentation.voice.VoiceRecorder
 
@@ -273,6 +275,98 @@ fun ChannelDetailScreen(
     if (state.showInfoSheet) {
         state.channel?.let { ch ->
             ChannelInfoSheet(channel = ch, onDismiss = { viewModel.closeInfoSheet() })
+        }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun ChannelDetailScreenPreview() {
+    WhatsMAXTheme {
+        Scaffold(
+            topBar = {
+                @OptIn(ExperimentalMaterial3Api::class)
+                TopAppBar(
+                    navigationIcon = { IconButton({}) { Icon(Icons.Default.ArrowBack, null) } },
+                    title = {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Box(
+                                modifier = Modifier.size(36.dp).clip(CircleShape)
+                                    .background(MaterialTheme.colorScheme.primaryContainer),
+                                contentAlignment = Alignment.Center
+                            ) { Text("Н", fontWeight = FontWeight.Bold, fontSize = 14.sp,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer) }
+                            Spacer(Modifier.width(10.dp))
+                            Column {
+                                Text("Новости WhatsMAX", fontWeight = FontWeight.SemiBold)
+                                Text("1250 подписчиков", fontSize = 12.sp,
+                                    color = MaterialTheme.colorScheme.onSurface.copy(0.6f))
+                            }
+                        }
+                    },
+                    actions = {
+                        TextButton({}) { Text("Отписаться") }
+                    }
+                )
+            }
+        ) { padding ->
+            LazyColumn(
+                Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(
+                    top = padding.calculateTopPadding() + 8.dp,
+                    bottom = padding.calculateBottomPadding() + 8.dp,
+                    start = 12.dp, end = 12.dp
+                ),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                item {
+                    Card(Modifier.fillMaxWidth()) {
+                        Column(Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
+                            Text("Обновление v2.0 уже доступно! Добавлены голосовые сообщения, реакции на сообщения и каналы.", fontSize = 15.sp)
+                            Spacer(Modifier.height(10.dp))
+                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically) {
+                                Text("2026-05-27 18:30", style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
+                                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Icon(Icons.Default.Visibility, null, modifier = Modifier.size(14.dp),
+                                            tint = MaterialTheme.colorScheme.onSurface.copy(0.5f))
+                                        Spacer(Modifier.width(3.dp))
+                                        Text("342", style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
+                                    }
+                                    TextButton({}, contentPadding = PaddingValues(horizontal = 6.dp, vertical = 2.dp)) {
+                                        Icon(Icons.Default.ChatBubbleOutline, null, modifier = Modifier.size(14.dp))
+                                        Spacer(Modifier.width(3.dp))
+                                        Text("5", fontSize = 12.sp)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                item {
+                    Card(Modifier.fillMaxWidth()) {
+                        Column(Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
+                            Text("Приветствуем всех новых подписчиков! Здесь мы делимся новостями о проекте WhatsMAX.", fontSize = 15.sp)
+                            Spacer(Modifier.height(10.dp))
+                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically) {
+                                Text("2026-05-26 14:15", style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(Icons.Default.Visibility, null, modifier = Modifier.size(14.dp),
+                                        tint = MaterialTheme.colorScheme.onSurface.copy(0.5f))
+                                    Spacer(Modifier.width(3.dp))
+                                    Text("1024", style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

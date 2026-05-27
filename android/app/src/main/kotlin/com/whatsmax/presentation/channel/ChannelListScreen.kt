@@ -15,8 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.whatsmax.presentation.theme.WhatsMAXTheme
 import coil.compose.AsyncImage
 import com.whatsmax.domain.model.Channel
 
@@ -128,6 +131,63 @@ private fun ChannelItem(channel: Channel, onClick: () -> Unit) {
         }
         if (!channel.isSubscribed) {
             TextButton(onClick = {}) { Text("Подписаться") }
+        }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun ChannelListScreenPreview() {
+    WhatsMAXTheme {
+        Scaffold(
+            topBar = {
+                @OptIn(ExperimentalMaterial3Api::class)
+                TopAppBar(
+                    navigationIcon = { IconButton({}) { Icon(Icons.Default.ArrowBack, null) } },
+                    title = { Text("Каналы") }
+                )
+            },
+            floatingActionButton = {
+                FloatingActionButton({}) { Icon(Icons.Default.Add, "Создать канал") }
+            }
+        ) { padding ->
+            Column(Modifier.fillMaxSize().padding(padding)) {
+                OutlinedTextField(
+                    value = "", onValueChange = {},
+                    placeholder = { Text("Поиск каналов...") },
+                    leadingIcon = { Icon(Icons.Default.Search, null) },
+                    modifier = Modifier.fillMaxWidth().padding(12.dp),
+                    shape = MaterialTheme.shapes.extraLarge, singleLine = true
+                )
+                Text("Мои каналы", fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
+                val sampleChannels = listOf(
+                    Triple("Новости WhatsMAX", "whatsmax_news", 1250),
+                    Triple("Android Dev", "android_dev", 890),
+                    Triple("Kotlin Tips", "kotlin_tips", 2100)
+                )
+                sampleChannels.forEach { (name, handle, members) ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Surface(color = MaterialTheme.colorScheme.secondaryContainer, shape = CircleShape,
+                            modifier = Modifier.size(52.dp)) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(Icons.Default.Newspaper, null, tint = MaterialTheme.colorScheme.onSecondaryContainer)
+                            }
+                        }
+                        Spacer(Modifier.width(12.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text(name, fontWeight = FontWeight.SemiBold, maxLines = 1)
+                            Text("@$handle · $members подписчиков",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurface.copy(0.6f))
+                        }
+                    }
+                    HorizontalDivider(Modifier.padding(start = 72.dp))
+                }
+            }
         }
     }
 }

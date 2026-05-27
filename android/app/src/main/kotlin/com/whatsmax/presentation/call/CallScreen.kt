@@ -24,7 +24,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import com.whatsmax.presentation.theme.OnlineIndicator
+import com.whatsmax.presentation.theme.WhatsMAXTheme
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.IntOffset
@@ -360,6 +362,153 @@ private fun LocalCameraPreview(modifier: Modifier = Modifier, useFrontCamera: Bo
             },
             modifier = modifier
         )
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true, name = "Аудиозвонок")
+@Composable
+private fun CallScreenAudioPreview() {
+    WhatsMAXTheme {
+        val bgColor = Color(0xFF1A1A2E)
+        Box(modifier = Modifier.fillMaxSize().background(bgColor)) {
+            Row(
+                modifier = Modifier.align(Alignment.TopCenter).padding(top = 48.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                Icon(Icons.Default.Phone, null, tint = Color.White.copy(0.7f), modifier = Modifier.size(16.dp))
+                Text("Аудиозвонок", color = Color.White.copy(0.7f), fontSize = 14.sp)
+            }
+            Column(
+                modifier = Modifier.align(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Box(modifier = Modifier.size(120.dp), contentAlignment = Alignment.Center) {
+                    Surface(color = Color(0xFF0088CC), shape = CircleShape, modifier = Modifier.fillMaxSize()) {}
+                    Text("Н", fontSize = 48.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                }
+                Spacer(Modifier.height(24.dp))
+                Text("Никита", fontSize = 24.sp, fontWeight = FontWeight.SemiBold, color = Color.White)
+                Spacer(Modifier.height(8.dp))
+                Text("Вызов...", color = Color.White.copy(0.7f), fontSize = 16.sp)
+            }
+            Row(
+                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 48.dp),
+                horizontalArrangement = Arrangement.spacedBy(20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Surface(color = Color.White.copy(0.2f), shape = CircleShape, modifier = Modifier.size(56.dp)) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Icon(Icons.Default.Mic, null, tint = Color.White, modifier = Modifier.size(24.dp))
+                        }
+                    }
+                    Spacer(Modifier.height(4.dp))
+                    Text("Выкл. мик.", color = Color.White.copy(0.7f), fontSize = 11.sp)
+                }
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Surface(color = Color.Red, shape = CircleShape, modifier = Modifier.size(72.dp)) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Icon(Icons.Default.CallEnd, null, tint = Color.White, modifier = Modifier.size(32.dp))
+                        }
+                    }
+                    Spacer(Modifier.height(4.dp))
+                    Text("Завершить", color = Color.White.copy(0.7f), fontSize = 11.sp)
+                }
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Surface(color = Color.White.copy(0.2f), shape = CircleShape, modifier = Modifier.size(56.dp)) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Icon(Icons.Default.VolumeUp, null, tint = Color.White, modifier = Modifier.size(24.dp))
+                        }
+                    }
+                    Spacer(Modifier.height(4.dp))
+                    Text("Динамик", color = Color.White.copy(0.7f), fontSize = 11.sp)
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true, name = "Видеозвонок")
+@Composable
+private fun CallScreenVideoPreview() {
+    WhatsMAXTheme {
+        val bgColor = Color(0xFF0D1B2A)
+        Box(modifier = Modifier.fillMaxSize().background(bgColor)) {
+            Row(
+                modifier = Modifier.align(Alignment.TopCenter).padding(top = 48.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                Icon(Icons.Default.Videocam, null, tint = Color.White.copy(0.7f), modifier = Modifier.size(16.dp))
+                Text("Видеозвонок", color = Color.White.copy(0.7f), fontSize = 14.sp)
+            }
+            Box(Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.35f)))
+            Column(
+                modifier = Modifier.align(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text("Никита", fontSize = 24.sp, fontWeight = FontWeight.SemiBold, color = Color.White)
+                Spacer(Modifier.height(8.dp))
+                Text("Вызов...", color = Color.White.copy(0.7f), fontSize = 16.sp)
+            }
+            Box(
+                modifier = Modifier.offset(x = 16.dp, y = 120.dp)
+                    .size(width = 108.dp, height = 144.dp)
+                    .clip(RoundedCornerShape(14.dp))
+                    .background(Color(0xFF1C2E40)),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(Icons.Default.VideocamOff, null, tint = Color.White.copy(0.5f), modifier = Modifier.size(32.dp))
+            }
+            Column(
+                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 48.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Row(horizontalArrangement = Arrangement.spacedBy(20.dp, Alignment.CenterHorizontally)) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Surface(color = OnlineIndicator, shape = CircleShape, modifier = Modifier.size(56.dp)) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(Icons.Default.Videocam, null, tint = Color.White, modifier = Modifier.size(24.dp))
+                            }
+                        }
+                        Spacer(Modifier.height(4.dp))
+                        Text("Камера вкл.", color = Color.White.copy(0.7f), fontSize = 11.sp)
+                    }
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Surface(color = Color.White.copy(0.2f), shape = CircleShape, modifier = Modifier.size(56.dp)) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(Icons.Default.Cameraswitch, null, tint = Color.White, modifier = Modifier.size(24.dp))
+                            }
+                        }
+                        Spacer(Modifier.height(4.dp))
+                        Text("Перевернуть", color = Color.White.copy(0.7f), fontSize = 11.sp)
+                    }
+                }
+                Row(horizontalArrangement = Arrangement.spacedBy(20.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Surface(color = Color.White.copy(0.2f), shape = CircleShape, modifier = Modifier.size(56.dp)) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(Icons.Default.Mic, null, tint = Color.White, modifier = Modifier.size(24.dp))
+                            }
+                        }
+                        Spacer(Modifier.height(4.dp))
+                        Text("Выкл. мик.", color = Color.White.copy(0.7f), fontSize = 11.sp)
+                    }
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Surface(color = Color.Red, shape = CircleShape, modifier = Modifier.size(72.dp)) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(Icons.Default.CallEnd, null, tint = Color.White, modifier = Modifier.size(32.dp))
+                            }
+                        }
+                        Spacer(Modifier.height(4.dp))
+                        Text("Завершить", color = Color.White.copy(0.7f), fontSize = 11.sp)
+                    }
+                    Box(Modifier.size(56.dp))
+                }
+            }
+        }
     }
 }
 

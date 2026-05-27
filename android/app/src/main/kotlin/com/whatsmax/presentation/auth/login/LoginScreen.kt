@@ -18,9 +18,11 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.whatsmax.presentation.theme.WhatsMAXTheme
 
 @Composable
 fun LoginScreen(
@@ -126,6 +128,65 @@ fun LoginScreen(
 
         TextButton(onClick = onNavigateToRegister) {
             Text("Нет аккаунта? Зарегистрироваться")
+        }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun LoginScreenPreview() {
+    WhatsMAXTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(horizontal = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text       = "WhatsMAX",
+                fontSize   = 36.sp,
+                fontWeight = FontWeight.Bold,
+                color      = MaterialTheme.colorScheme.primary
+            )
+            Spacer(Modifier.height(8.dp))
+            Text(
+                text  = "Войдите в аккаунт",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+            )
+            Spacer(Modifier.height(40.dp))
+            OutlinedTextField(
+                value         = "",
+                onValueChange = {},
+                label         = { Text("Email") },
+                leadingIcon   = { Icon(Icons.Default.Email, contentDescription = null) },
+                singleLine    = true,
+                modifier      = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(12.dp))
+            OutlinedTextField(
+                value         = "",
+                onValueChange = {},
+                label         = { Text("Пароль") },
+                leadingIcon   = { Icon(Icons.Default.Lock, contentDescription = null) },
+                trailingIcon  = { Icon(Icons.Default.Visibility, contentDescription = null) },
+                visualTransformation = PasswordVisualTransformation(),
+                singleLine    = true,
+                modifier      = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(24.dp))
+            Button(
+                onClick  = {},
+                modifier = Modifier.fillMaxWidth().height(50.dp)
+            ) {
+                Text("Войти", fontSize = 16.sp)
+            }
+            Spacer(Modifier.height(16.dp))
+            TextButton(onClick = {}) {
+                Text("Нет аккаунта? Зарегистрироваться")
+            }
         }
     }
 }

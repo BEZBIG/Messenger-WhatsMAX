@@ -13,9 +13,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.*
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.whatsmax.presentation.theme.WhatsMAXTheme
 
 @Composable
 fun RegisterScreen(
@@ -103,5 +105,60 @@ fun RegisterScreen(
 
         Spacer(Modifier.height(16.dp))
         TextButton(onClick = onNavigateToLogin) { Text("Уже есть аккаунт? Войти") }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun RegisterScreenPreview() {
+    WhatsMAXTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 24.dp, vertical = 40.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Создать аккаунт", fontSize = 28.sp, fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary)
+            Spacer(Modifier.height(32.dp))
+            OutlinedTextField(
+                value = "", onValueChange = {},
+                label = { Text("Имя") }, leadingIcon = { Icon(Icons.Default.Person, null) },
+                singleLine = true, modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(12.dp))
+            OutlinedTextField(
+                value = "", onValueChange = {},
+                label = { Text("Username (@)") }, leadingIcon = { Icon(Icons.Default.AlternateEmail, null) },
+                singleLine = true, modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(12.dp))
+            OutlinedTextField(
+                value = "", onValueChange = {},
+                label = { Text("Email") }, leadingIcon = { Icon(Icons.Default.Email, null) },
+                singleLine = true, modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(12.dp))
+            OutlinedTextField(
+                value = "", onValueChange = {},
+                label = { Text("Пароль") }, leadingIcon = { Icon(Icons.Default.Lock, null) },
+                visualTransformation = PasswordVisualTransformation(),
+                singleLine = true, modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(12.dp))
+            OutlinedTextField(
+                value = "", onValueChange = {},
+                label = { Text("Подтвердите пароль") }, leadingIcon = { Icon(Icons.Default.Lock, null) },
+                visualTransformation = PasswordVisualTransformation(),
+                singleLine = true, modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(24.dp))
+            Button(
+                onClick = {}, modifier = Modifier.fillMaxWidth().height(50.dp)
+            ) { Text("Зарегистрироваться", fontSize = 16.sp) }
+            Spacer(Modifier.height(16.dp))
+            TextButton(onClick = {}) { Text("Уже есть аккаунт? Войти") }
+        }
     }
 }

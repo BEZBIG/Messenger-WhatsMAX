@@ -25,12 +25,14 @@ import com.whatsmax.presentation.theme.OnlineIndicator
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.whatsmax.presentation.theme.WhatsMAXTheme
 import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -364,6 +366,81 @@ fun ProfileScreen(
             },
             confirmButton = { TextButton({ showAvatarDialog = false }) { Text("Отмена") } }
         )
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun ProfileScreenPreview() {
+    WhatsMAXTheme {
+        Scaffold(
+            topBar = {
+                @OptIn(ExperimentalMaterial3Api::class)
+                TopAppBar(
+                    navigationIcon = { IconButton({}) { Icon(Icons.Default.ArrowBack, null) } },
+                    title = { Text("Мой профиль") },
+                    actions = { IconButton({}) { Icon(Icons.Default.Edit, "Редактировать") } },
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
+                )
+            }
+        ) { padding ->
+            Column(Modifier.fillMaxSize()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth().height(240.dp)
+                        .background(Brush.verticalGradient(listOf(
+                            MaterialTheme.colorScheme.primary.copy(alpha = 0.85f),
+                            MaterialTheme.colorScheme.primaryContainer
+                        ))).padding(padding),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Box(
+                            modifier = Modifier.size(96.dp).clip(CircleShape)
+                                .background(Color.White.copy(alpha = 0.3f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("М", fontSize = 38.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                        }
+                        Spacer(Modifier.height(12.dp))
+                        Text("Максим", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                        Text("@maxim", fontSize = 14.sp, color = Color.White.copy(alpha = 0.85f))
+                        Spacer(Modifier.height(4.dp))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Box(Modifier.size(8.dp).clip(CircleShape).background(OnlineIndicator))
+                            Spacer(Modifier.width(5.dp))
+                            Text("в сети", fontSize = 12.sp, color = Color.White.copy(0.8f))
+                        }
+                    }
+                }
+                Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp).offset(y = (-16).dp)) {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                    ) {
+                        Column(Modifier.padding(16.dp)) {
+                            Text("КОНТАКТ", fontSize = 12.sp, fontWeight = FontWeight.SemiBold,
+                                color = MaterialTheme.colorScheme.primary, letterSpacing = 0.5.sp)
+                            Spacer(Modifier.height(8.dp))
+                            ProfileInfoRow(Icons.Default.AlternateEmail, "maxim")
+                            ProfileInfoRow(Icons.Default.Email, "maxim@example.com")
+                        }
+                    }
+                    Spacer(Modifier.height(16.dp))
+                    OutlinedButton(
+                        onClick = {}, modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(12.dp),
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.error),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.error.copy(0.5f))
+                    ) {
+                        Icon(Icons.Default.Logout, null, modifier = Modifier.size(18.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text("Выйти из аккаунта", fontWeight = FontWeight.Medium)
+                    }
+                }
+            }
+        }
     }
 }
 
