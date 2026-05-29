@@ -522,7 +522,7 @@ private fun PreviewChannelDetail() {
                     navigationIcon = { IconButton({}) { Icon(Icons.Default.ArrowBack, null) } },
                     title = {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Box(Modifier.size(36.dp).clip(CircleShape)
+                            Box(Modifier.size(48.dp).clip(CircleShape)
                                 .background(MaterialTheme.colorScheme.primaryContainer),
                                 contentAlignment = Alignment.Center) {
                                 Text("Н", fontWeight = FontWeight.Bold, fontSize = 14.sp,
