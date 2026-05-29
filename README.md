@@ -258,6 +258,35 @@ call_offer, call_answer, call_ice, call_end
 
 ---
 
+## Тестирование
+
+Backend покрыт автоматическими тестами на **JUnit 4** + **MockK 1.13.9** + **ktor-server-test-host**. Тесты не требуют живой PostgreSQL и Firebase: вспомогательная функция `runTestApp { mocks -> ... }` из `TestSupport.kt` поднимает Ktor с пустым конфигом, моками всех репозиториев и фейковой Bearer-аутентификацией, в которой uid пользователя передаётся прямо в значении токена.
+
+**Покрытие (22 теста):**
+
+| Группа | Тесты |
+|--------|-------|
+| Регистрация / профиль | `registerUserSuccess`, `registerExistingUserReturns200`, `registerInvalidUsernameFails`, `getMeReturnsUser`, `getMeForUnknownUserReturns404` |
+| Чаты | `createDirectChatSuccess`, `createDirectChatReturnsExisting`, `createGroupChatSuccess`, `getChatsReturnsList`, `getChatByIdForNonMemberFails403` |
+| Сообщения | `sendMessageSuccess` (+ рассылка через WebSocket), `sendMessageInForeignChatFails403`, `getMessagesReturnsList`, `editOwnMessageSuccess`, `editForeignMessageFails403`, `deleteOwnMessageSuccess` |
+| Поиск пользователей | `searchUsersByQuerySuccess`, `searchUsersWithoutQueryFails400` |
+| Безопасность / прочее | `unauthorisedAccessFails401`, `unknownRouteReturns404` + 2 smoke-теста |
+
+**Запуск:**
+
+```bash
+cd backend
+./gradlew test
+```
+
+**HTML-отчёт** после прогона: `backend/build/reports/tests/test/index.html`.
+
+![Отчёт о тестировании]()
+
+Все 22 теста проходят успешно (~4 сек) — подтверждается корректность регистрации через Firebase, создания и просмотра чатов, отправки/редактирования/удаления сообщений с рассылкой через WebSocket, поиска и защиты приватных эндпоинтов.
+
+---
+
 ## Частые проблемы
 
 | Проблема | Решение |
