@@ -299,6 +299,9 @@ cd backend
 
 ---
 
+
+https://disk.yandex.ru/i/pL7X864Dm6qdNQ
+
 ## Лицензия
 
 Учебный проект. Свободное использование.
