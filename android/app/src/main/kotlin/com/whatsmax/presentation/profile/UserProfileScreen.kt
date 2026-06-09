@@ -17,6 +17,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import com.whatsmax.R
 import com.whatsmax.presentation.theme.OnlineIndicator
 import com.whatsmax.presentation.theme.WhatsMAXTheme
 import androidx.compose.ui.text.font.FontWeight
@@ -106,7 +108,7 @@ fun UserProfileScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = { IconButton(onBack) { Icon(Icons.Default.ArrowBack, null) } },
-                title = { Text("Профиль") },
+                title = { Text(stringResource(R.string.profile_title)) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.Transparent
                 )
@@ -146,7 +148,7 @@ fun UserProfileScreen(
                             if (user.avatarUrl != null) {
                                 AsyncImage(
                                     model = user.avatarUrl,
-                                    contentDescription = "Аватар",
+                                    contentDescription = stringResource(R.string.cd_avatar),
                                     modifier = Modifier.size(90.dp).clip(CircleShape)
                                 )
                             } else {
@@ -183,7 +185,7 @@ fun UserProfileScreen(
                                 )
                                 Spacer(Modifier.width(5.dp))
                                 Text(
-                                    text = if (user.isOnline) "в сети" else "не в сети",
+                                    text = if (user.isOnline) stringResource(R.string.online) else stringResource(R.string.offline),
                                     fontSize = 12.sp,
                                     color = Color.White.copy(alpha = 0.8f)
                                 )
@@ -207,27 +209,27 @@ fun UserProfileScreen(
                             ) {
                                 ActionButton(
                                     icon  = if (state.isStartingChat) null else Icons.Default.Message,
-                                    label = "Написать",
+                                    label = stringResource(R.string.action_message),
                                     isLoading = state.isStartingChat,
                                     onClick = { viewModel.openChat { chatId -> onOpenChat(chatId) } }
                                 )
                                 ActionButton(
                                     icon  = Icons.Default.Phone,
-                                    label = "Позвонить",
+                                    label = stringResource(R.string.call_btn),
                                     onClick = {
                                         viewModel.openChat { chatId -> onStartCall(chatId, false) }
                                     }
                                 )
                                 ActionButton(
                                     icon  = Icons.Default.Videocam,
-                                    label = "Видео",
+                                    label = stringResource(R.string.action_video),
                                     onClick = {
                                         viewModel.openChat { chatId -> onStartCall(chatId, true) }
                                     }
                                 )
                                 ActionButton(
                                     icon  = if (isBlocked) Icons.Default.LockOpen else Icons.Default.Block,
-                                    label = if (isBlocked) "Разблокировать" else "Заблокировать",
+                                    label = if (isBlocked) stringResource(R.string.unblock) else stringResource(R.string.block),
                                     tint  = if (isBlocked) MaterialTheme.colorScheme.primary
                                             else MaterialTheme.colorScheme.error,
                                     onClick = { showBlockDialog = true }
@@ -243,14 +245,14 @@ fun UserProfileScreen(
                             .padding(top = 16.dp)
                     ) {
                         if (!user.bio.isNullOrBlank()) {
-                            InfoCard(title = "О себе") {
+                            InfoCard(title = stringResource(R.string.about_label)) {
                                 Text(user.bio!!, fontSize = 15.sp,
                                     color = MaterialTheme.colorScheme.onSurface)
                             }
                             Spacer(Modifier.height(8.dp))
                         }
 
-                        InfoCard(title = "Контакт") {
+                        InfoCard(title = stringResource(R.string.contact_label)) {
                             if (user.username.isNotBlank()) {
                                 InfoRow(Icons.Default.AlternateEmail, user.username)
                             }
@@ -262,7 +264,7 @@ fun UserProfileScreen(
                             }
                             InfoRow(
                                 icon  = Icons.Default.Circle,
-                                text  = if (user.isOnline) "Сейчас в сети" else "Был(а) недавно",
+                                text  = if (user.isOnline) stringResource(R.string.online_now) else stringResource(R.string.last_seen_recently),
                                 tint  = if (user.isOnline) OnlineIndicator
                                         else MaterialTheme.colorScheme.onSurface.copy(0.5f)
                             )
@@ -284,7 +286,7 @@ fun UserProfileScreen(
                                         tint = MaterialTheme.colorScheme.error,
                                         modifier = Modifier.size(18.dp))
                                     Spacer(Modifier.width(8.dp))
-                                    Text("Пользователь заблокирован",
+                                    Text(stringResource(R.string.user_blocked),
                                         color = MaterialTheme.colorScheme.error,
                                         fontSize = 14.sp)
                                 }
@@ -296,7 +298,7 @@ fun UserProfileScreen(
                 }
             }
             else -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text("Пользователь не найден", color = MaterialTheme.colorScheme.error)
+                Text(stringResource(R.string.user_not_found), color = MaterialTheme.colorScheme.error)
             }
         }
     }
@@ -309,13 +311,13 @@ fun UserProfileScreen(
                 null,
                 tint = if (isBlocked) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
             ) },
-            title = { Text(if (isBlocked) "Разблокировать?" else "Заблокировать?") },
+            title = { Text(if (isBlocked) stringResource(R.string.unblock_q) else stringResource(R.string.block_q)) },
             text = {
                 Text(
                     if (isBlocked)
-                        "${state.user?.displayName} сможет снова писать вам сообщения."
+                        stringResource(R.string.unblock_message, state.user?.displayName ?: "")
                     else
-                        "${state.user?.displayName} не сможет писать вам сообщения и видеть ваш профиль."
+                        stringResource(R.string.block_message, state.user?.displayName ?: "")
                 )
             },
             confirmButton = {
@@ -325,10 +327,10 @@ fun UserProfileScreen(
                         containerColor = if (isBlocked) MaterialTheme.colorScheme.primary
                                         else MaterialTheme.colorScheme.error
                     )
-                ) { Text(if (isBlocked) "Разблокировать" else "Заблокировать") }
+                ) { Text(if (isBlocked) stringResource(R.string.unblock) else stringResource(R.string.block)) }
             },
             dismissButton = {
-                TextButton({ showBlockDialog = false }) { Text("Отмена") }
+                TextButton({ showBlockDialog = false }) { Text(stringResource(R.string.cancel)) }
             }
         )
     }

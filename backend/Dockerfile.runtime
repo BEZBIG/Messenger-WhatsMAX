@@ -1,0 +1,8 @@
+# Dockerfile.runtime — упаковывает уже собранный на хосте fat-jar.
+# Используется, когда сборка Gradle внутри Docker недоступна (обрыв TLS к maven).
+# Перед сборкой образа выполнить на хосте: ./gradlew buildFatJar
+FROM eclipse-temurin:17-jre-jammy
+WORKDIR /app
+COPY build/libs/whatsmax-backend.jar /app/whatsmax-backend.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app/whatsmax-backend.jar"]

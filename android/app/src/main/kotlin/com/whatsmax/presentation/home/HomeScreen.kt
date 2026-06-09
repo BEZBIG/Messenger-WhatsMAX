@@ -18,12 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.whatsmax.R
 import com.whatsmax.presentation.theme.WhatsMAXTheme
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -69,29 +71,29 @@ fun HomeScreen(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
-                title = { Text("WhatsMAX", fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.app_name), fontWeight = FontWeight.Bold) },
                 actions = {
-                    IconButton(onClick = onOpenChannels) { Icon(Icons.Default.Newspaper, "Каналы") }
-                    IconButton(onClick = onOpenProfile) { Icon(Icons.Default.Person, "Профиль") }
+                    IconButton(onClick = onOpenChannels) { Icon(Icons.Default.Newspaper, stringResource(R.string.channels_title)) }
+                    IconButton(onClick = onOpenProfile) { Icon(Icons.Default.Person, stringResource(R.string.profile_title)) }
                 }
             )
         },
         floatingActionButton = {
             Box {
                 FloatingActionButton(onClick = { showFabMenu = true }) {
-                    Icon(Icons.Default.Edit, "Новый чат")
+                    Icon(Icons.Default.Edit, stringResource(R.string.new_chat))
                 }
                 DropdownMenu(
                     expanded = showFabMenu,
                     onDismissRequest = { showFabMenu = false }
                 ) {
                     DropdownMenuItem(
-                        text = { Text("Личный чат") },
+                        text = { Text(stringResource(R.string.home_direct_chat)) },
                         leadingIcon = { Icon(Icons.Default.Person, null) },
                         onClick = { showFabMenu = false; showNewDirectDialog = true }
                     )
                     DropdownMenuItem(
-                        text = { Text("Групповой чат") },
+                        text = { Text(stringResource(R.string.home_group_chat)) },
                         leadingIcon = { Icon(Icons.Default.Group, null) },
                         onClick = { showFabMenu = false; showNewGroupDialog = true }
                     )
@@ -116,9 +118,9 @@ fun HomeScreen(
                     items(state.chats, key = { it.id }) { chat ->
                         val displayName = if (chat.type == ChatType.DIRECT) {
                             chat.members.firstOrNull { it.userId != state.currentUserId }?.displayName
-                                ?: chat.name ?: "Чат"
+                                ?: chat.name ?: stringResource(R.string.chat_default_name)
                         } else {
-                            chat.name ?: chat.members.firstOrNull()?.displayName ?: "Чат"
+                            chat.name ?: chat.members.firstOrNull()?.displayName ?: stringResource(R.string.chat_default_name)
                         }
                         ChatListItem(
                             chat          = chat,
@@ -170,7 +172,7 @@ private fun SearchBar(query: String, onQueryChange: (String) -> Unit, modifier: 
     OutlinedTextField(
         value         = query,
         onValueChange = onQueryChange,
-        placeholder   = { Text("Поиск чатов и пользователей...") },
+        placeholder   = { Text(stringResource(R.string.home_search_hint)) },
         leadingIcon   = { Icon(Icons.Default.Search, null) },
         singleLine    = true,
         modifier      = modifier,
@@ -244,15 +246,15 @@ private fun ChatListItem(
                     val hasUnread = chat.unreadCount > 0
                     val lastMsg = chat.lastMessage
                     val lastMsgText = when {
-                        lastMsg == null -> "Нет сообщений"
-                        lastMsg.isDeleted -> "Сообщение удалено"
-                        lastMsg.type == MessageType.CALL  -> lastMsg.content ?: "Звонок"
-                        lastMsg.type == MessageType.IMAGE -> "Фото"
-                        lastMsg.type == MessageType.VOICE -> "Голосовое сообщение"
-                        lastMsg.type == MessageType.AUDIO -> "Аудио"
-                        lastMsg.type == MessageType.VIDEO -> "Видео"
-                        lastMsg.type == MessageType.FILE  -> lastMsg.fileName ?: "Файл"
-                        else -> lastMsg.content ?: "Нет сообщений"
+                        lastMsg == null -> stringResource(R.string.no_messages)
+                        lastMsg.isDeleted -> stringResource(R.string.message_deleted)
+                        lastMsg.type == MessageType.CALL  -> lastMsg.content ?: stringResource(R.string.msg_call)
+                        lastMsg.type == MessageType.IMAGE -> stringResource(R.string.msg_photo)
+                        lastMsg.type == MessageType.VOICE -> stringResource(R.string.msg_voice)
+                        lastMsg.type == MessageType.AUDIO -> stringResource(R.string.msg_audio)
+                        lastMsg.type == MessageType.VIDEO -> stringResource(R.string.msg_video)
+                        lastMsg.type == MessageType.FILE  -> lastMsg.fileName ?: stringResource(R.string.msg_file)
+                        else -> lastMsg.content ?: stringResource(R.string.no_messages)
                     }
                     Row(
                         modifier = Modifier.weight(1f),
@@ -306,12 +308,12 @@ private fun ChatListItem(
 
         DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
             DropdownMenuItem(
-                text = { Text("Удалить у меня") },
+                text = { Text(stringResource(R.string.delete_for_me)) },
                 leadingIcon = { Icon(Icons.Default.DeleteOutline, null) },
                 onClick = { showMenu = false; onDeleteForMe() }
             )
             DropdownMenuItem(
-                text = { Text("Удалить у всех", color = MaterialTheme.colorScheme.error) },
+                text = { Text(stringResource(R.string.delete_for_all), color = MaterialTheme.colorScheme.error) },
                 leadingIcon = { Icon(Icons.Default.Delete, null, tint = MaterialTheme.colorScheme.error) },
                 onClick = { showMenu = false; onDeleteForAll() }
             )
@@ -343,19 +345,19 @@ private fun NewDirectChatDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Личный чат") },
+        title = { Text(stringResource(R.string.home_direct_chat)) },
         text = {
             Column {
                 OutlinedTextField(
                     value = searchQuery, onValueChange = onQueryChange,
-                    placeholder = { Text("Поиск пользователей...") },
+                    placeholder = { Text(stringResource(R.string.search_users_hint)) },
                     leadingIcon = { Icon(Icons.Default.Search, null) },
                     singleLine = true, modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(Modifier.height(8.dp))
                 if (searchQuery.length < 2) {
                     Text(
-                        "Введите минимум 2 символа для поиска",
+                        stringResource(R.string.search_min_chars),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurface.copy(0.5f),
                         modifier = Modifier.padding(horizontal = 4.dp)
@@ -372,7 +374,7 @@ private fun NewDirectChatDialog(
                         if (searchResults.isEmpty()) {
                             item {
                                 Text(
-                                    "Пользователи не найдены",
+                                    stringResource(R.string.users_not_found),
                                     modifier = Modifier.padding(16.dp),
                                     color = MaterialTheme.colorScheme.onSurface.copy(0.5f)
                                 )
@@ -382,7 +384,7 @@ private fun NewDirectChatDialog(
                 }
             }
         },
-        confirmButton = { TextButton(onDismiss) { Text("Отмена") } }
+        confirmButton = { TextButton(onDismiss) { Text(stringResource(R.string.cancel)) } }
     )
 }
 
@@ -461,19 +463,19 @@ private fun NewGroupChatDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Групповой чат") },
+        title = { Text(stringResource(R.string.home_group_chat)) },
         text = {
             Column {
                 OutlinedTextField(
                     value = groupName, onValueChange = { groupName = it },
-                    label = { Text("Название группы") },
+                    label = { Text(stringResource(R.string.group_name_hint)) },
                     singleLine = true, modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(Modifier.height(8.dp))
 
                 if (selectedUsers.isNotEmpty()) {
                     Text(
-                        "Участники: ${selectedUsers.joinToString { it.displayName }}",
+                        stringResource(R.string.group_members, selectedUsers.joinToString { it.displayName }),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(bottom = 4.dp)
@@ -482,7 +484,7 @@ private fun NewGroupChatDialog(
 
                 OutlinedTextField(
                     value = searchQuery, onValueChange = onQueryChange,
-                    placeholder = { Text("Добавить участника...") },
+                    placeholder = { Text(stringResource(R.string.add_member_hint)) },
                     leadingIcon = { Icon(Icons.Default.Search, null) },
                     singleLine = true, modifier = Modifier.fillMaxWidth()
                 )
@@ -517,8 +519,8 @@ private fun NewGroupChatDialog(
                     }
                 },
                 enabled = groupName.isNotBlank() && selectedUsers.isNotEmpty()
-            ) { Text("Создать") }
+            ) { Text(stringResource(R.string.create)) }
         },
-        dismissButton = { TextButton(onDismiss) { Text("Отмена") } }
+        dismissButton = { TextButton(onDismiss) { Text(stringResource(R.string.cancel)) } }
     )
 }

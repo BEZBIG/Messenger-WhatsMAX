@@ -1,0 +1,16 @@
+# Ignore-файл специально для Dockerfile.runtime: пускаем build/libs внутрь контекста,
+# но исключаем всё лишнее, чтобы контекст оставался лёгким.
+.gradle/
+build/classes/
+build/tmp/
+build/resources/
+build/reports/
+build/kotlin/
+.idea/
+.kotlin/
+logs/
+uploads/
+*.iml
+.env
+firebase-service-account.json
+src/

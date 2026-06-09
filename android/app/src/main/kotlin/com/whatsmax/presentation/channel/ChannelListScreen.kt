@@ -18,7 +18,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.whatsmax.R
 import com.whatsmax.presentation.theme.WhatsMAXTheme
 import coil.compose.AsyncImage
 import com.whatsmax.domain.model.Channel
@@ -46,7 +48,7 @@ fun ChannelListScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = { IconButton(onBack) { Icon(Icons.Default.ArrowBack, null) } },
-                title = { Text("Каналы") }
+                title = { Text(stringResource(R.string.channels_title)) }
             )
         },
         floatingActionButton = {
@@ -55,14 +57,14 @@ fun ChannelListScreen(
                     CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary,
                         modifier = Modifier.size(24.dp), strokeWidth = 2.dp)
                 else
-                    Icon(Icons.Default.Add, "Создать канал")
+                    Icon(Icons.Default.Add, stringResource(R.string.cd_create_channel))
             }
         }
     ) { padding ->
         Column(Modifier.fillMaxSize().padding(padding)) {
             OutlinedTextField(
                 value = state.searchQuery, onValueChange = viewModel::onSearchQueryChange,
-                placeholder = { Text("Поиск каналов...") },
+                placeholder = { Text(stringResource(R.string.search_channels_hint)) },
                 leadingIcon = { Icon(Icons.Default.Search, null) },
                 modifier = Modifier.fillMaxWidth().padding(12.dp),
                 shape = MaterialTheme.shapes.extraLarge, singleLine = true
@@ -75,7 +77,7 @@ fun ChannelListScreen(
             } else {
                 LazyColumn(Modifier.fillMaxSize()) {
                     if (state.searchQuery.isEmpty()) {
-                        item { Text("Мои каналы", fontWeight = FontWeight.SemiBold,
+                        item { Text(stringResource(R.string.my_channels), fontWeight = FontWeight.SemiBold,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) }
                     }
                     items(displayList, key = { it.id }) { channel ->
@@ -85,7 +87,7 @@ fun ChannelListScreen(
                     if (displayList.isEmpty()) {
                         item {
                             Box(Modifier.fillMaxWidth().padding(40.dp), contentAlignment = Alignment.Center) {
-                                Text("Нет каналов", color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
+                                Text(stringResource(R.string.no_channels), color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
                             }
                         }
                     }
@@ -125,12 +127,12 @@ private fun ChannelItem(channel: Channel, onClick: () -> Unit) {
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
             Text(channel.name, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis)
-            Text("@${channel.handle.trimStart('@')} · ${channel.membersCount} подписчиков",
+            Text(stringResource(R.string.channel_subtitle, channel.handle.trimStart('@'), channel.membersCount),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(0.6f))
         }
         if (!channel.isSubscribed) {
-            TextButton(onClick = {}) { Text("Подписаться") }
+            TextButton(onClick = {}) { Text(stringResource(R.string.subscribe)) }
         }
     }
 }
@@ -204,30 +206,30 @@ private fun CreateChannelDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Новый канал") },
+        title = { Text(stringResource(R.string.new_channel)) },
         text = {
             Column {
                 OutlinedTextField(value = handle, onValueChange = { handle = it },
-                    label = { Text("@handle") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                    label = { Text(stringResource(R.string.handle_hint)) }, singleLine = true, modifier = Modifier.fillMaxWidth())
                 Spacer(Modifier.height(8.dp))
                 OutlinedTextField(value = name, onValueChange = { name = it },
-                    label = { Text("Название") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                    label = { Text(stringResource(R.string.channel_name_hint)) }, singleLine = true, modifier = Modifier.fillMaxWidth())
                 Spacer(Modifier.height(8.dp))
                 OutlinedTextField(value = desc, onValueChange = { desc = it },
-                    label = { Text("Описание (опционально)") }, modifier = Modifier.fillMaxWidth(), maxLines = 3)
+                    label = { Text(stringResource(R.string.channel_desc_hint)) }, modifier = Modifier.fillMaxWidth(), maxLines = 3)
                 Spacer(Modifier.height(8.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Switch(checked = isPublic, onCheckedChange = { isPublic = it })
                     Spacer(Modifier.width(8.dp))
-                    Text(if (isPublic) "Публичный" else "Приватный")
+                    Text(if (isPublic) stringResource(R.string.public_label) else stringResource(R.string.private_label))
                 }
             }
         },
         confirmButton = {
             Button(onClick = { if (handle.isNotBlank() && name.isNotBlank()) onCreate(handle.trimStart('@'), name, desc, isPublic) }) {
-                Text("Создать")
+                Text(stringResource(R.string.create))
             }
         },
-        dismissButton = { TextButton(onDismiss) { Text("Отмена") } }
+        dismissButton = { TextButton(onDismiss) { Text(stringResource(R.string.cancel)) } }
     )
 }

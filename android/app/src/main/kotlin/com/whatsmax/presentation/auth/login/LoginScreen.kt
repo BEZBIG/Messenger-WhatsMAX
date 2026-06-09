@@ -17,11 +17,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.whatsmax.R
 import com.whatsmax.presentation.theme.WhatsMAXTheme
 
 @Composable
@@ -48,14 +50,14 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text       = "WhatsMAX",
+            text       = stringResource(R.string.app_name),
             fontSize   = 36.sp,
             fontWeight = FontWeight.Bold,
             color      = MaterialTheme.colorScheme.primary
         )
         Spacer(Modifier.height(8.dp))
         Text(
-            text  = "Войдите в аккаунт",
+            text  = stringResource(R.string.login_subtitle),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
         )
@@ -65,7 +67,7 @@ fun LoginScreen(
         OutlinedTextField(
             value         = state.email,
             onValueChange = viewModel::onEmailChange,
-            label         = { Text("Email") },
+            label         = { Text(stringResource(R.string.email_hint)) },
             leadingIcon   = { Icon(Icons.Default.Email, contentDescription = null) },
             singleLine    = true,
             keyboardOptions = KeyboardOptions(
@@ -81,13 +83,13 @@ fun LoginScreen(
         OutlinedTextField(
             value         = state.password,
             onValueChange = viewModel::onPasswordChange,
-            label         = { Text("Пароль") },
+            label         = { Text(stringResource(R.string.password_hint)) },
             leadingIcon   = { Icon(Icons.Default.Lock, contentDescription = null) },
             trailingIcon  = {
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
                     Icon(
                         if (passwordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
-                        contentDescription = "Показать пароль"
+                        contentDescription = stringResource(R.string.show_password)
                     )
                 }
             },
@@ -120,14 +122,14 @@ fun LoginScreen(
             if (state.isLoading) {
                 CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(24.dp))
             } else {
-                Text("Войти", fontSize = 16.sp)
+                Text(stringResource(R.string.login_btn), fontSize = 16.sp)
             }
         }
 
         Spacer(Modifier.height(16.dp))
 
         TextButton(onClick = onNavigateToRegister) {
-            Text("Нет аккаунта? Зарегистрироваться")
+            Text(stringResource(R.string.login_no_account))
         }
     }
 }

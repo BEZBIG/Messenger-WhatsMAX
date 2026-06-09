@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -37,6 +38,7 @@ import androidx.core.content.FileProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.whatsmax.BuildConfig
+import com.whatsmax.R
 import com.whatsmax.domain.model.Chat
 import com.whatsmax.domain.model.ChatType
 import com.whatsmax.domain.model.Message
@@ -128,7 +130,7 @@ fun ChatScreen(
     val displayName = when {
         state.chat?.type == ChatType.DIRECT && peer != null -> peer.displayName
         chatName.isNotEmpty() -> chatName
-        else -> state.chat?.name ?: "Чат"
+        else -> state.chat?.name ?: stringResource(R.string.chat_default_name)
     }
 
     Scaffold(
@@ -136,7 +138,7 @@ fun ChatScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-                    IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Назад") }
+                    IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, stringResource(R.string.back)) }
                 },
                 title = {
                     Row(
@@ -152,7 +154,7 @@ fun ChatScreen(
                         if (peer?.avatarUrl != null) {
                             AsyncImage(
                                 model = peer.avatarUrl,
-                                contentDescription = "Аватар $displayName",
+                                contentDescription = stringResource(R.string.avatar_of, displayName),
                                 modifier = Modifier
                                     .size(36.dp)
                                     .clip(CircleShape)
@@ -176,16 +178,16 @@ fun ChatScreen(
                         Spacer(Modifier.width(10.dp))
                         Column {
                             Text(displayName, fontWeight = FontWeight.SemiBold)
-                            if (state.isTyping) Text("печатает...", fontSize = 12.sp,
+                            if (state.isTyping) Text(stringResource(R.string.typing), fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.primary)
                             else if (peer?.isOnline == true)
-                                Text("в сети", fontSize = 12.sp, color = OnlineIndicator)
+                                Text(stringResource(R.string.online), fontSize = 12.sp, color = OnlineIndicator)
                         }
                     }
                 },
                 actions = {
-                    IconButton({ onStartCall(chatId) }) { Icon(Icons.Default.Phone, "Звонок") }
-                    IconButton({ onStartVideoCall(chatId) }) { Icon(Icons.Default.Videocam, "Видеозвонок") }
+                    IconButton({ onStartCall(chatId) }) { Icon(Icons.Default.Phone, stringResource(R.string.cd_call)) }
+                    IconButton({ onStartVideoCall(chatId) }) { Icon(Icons.Default.Videocam, stringResource(R.string.cd_video_call)) }
                 }
             )
         },
@@ -276,14 +278,14 @@ fun ChatScreen(
     if (showAttachDialog) {
         AlertDialog(
             onDismissRequest = { showAttachDialog = false },
-            title = { Text("Прикрепить фото") },
+            title = { Text(stringResource(R.string.attach_photo_title)) },
             text = {
                 Column {
                     TextButton(
                         onClick = { showAttachDialog = false; galleryLauncher.launch("image/*") },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Icon(Icons.Default.Photo, null); Spacer(Modifier.width(8.dp)); Text("Выбрать из галереи")
+                        Icon(Icons.Default.Photo, null); Spacer(Modifier.width(8.dp)); Text(stringResource(R.string.choose_from_gallery))
                     }
                     TextButton(
                         onClick = {
@@ -300,11 +302,11 @@ fun ChatScreen(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Icon(Icons.Default.CameraAlt, null); Spacer(Modifier.width(8.dp)); Text("Сделать фото")
+                        Icon(Icons.Default.CameraAlt, null); Spacer(Modifier.width(8.dp)); Text(stringResource(R.string.take_photo))
                     }
                 }
             },
-            confirmButton = { TextButton({ showAttachDialog = false }) { Text("Отмена") } }
+            confirmButton = { TextButton({ showAttachDialog = false }) { Text(stringResource(R.string.cancel)) } }
         )
     }
 
@@ -367,14 +369,14 @@ private fun MessageBubble(
 
             message.replyToId?.let {
                 Surface(color = Color.Black.copy(alpha = 0.08f), shape = RoundedCornerShape(8.dp)) {
-                    Text("↩ Ответ", modifier = Modifier.padding(6.dp), fontSize = 12.sp,
+                    Text(stringResource(R.string.reply_label), modifier = Modifier.padding(6.dp), fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(0.6f))
                 }
                 Spacer(Modifier.height(4.dp))
             }
 
             when {
-                message.isDeleted -> Text("Сообщение удалено", fontStyle = FontStyle.Italic,
+                message.isDeleted -> Text(stringResource(R.string.message_deleted), fontStyle = FontStyle.Italic,
                     color = Color.Gray, fontSize = 14.sp)
                 message.type == MessageType.CALL -> {
                     val rawContent = message.content ?: ""
@@ -405,7 +407,7 @@ private fun MessageBubble(
                         resolveFileUrl(message.fileId)
                     coil.compose.AsyncImage(
                         model = imageUrl,
-                        contentDescription = "Изображение",
+                        contentDescription = stringResource(R.string.cd_image),
                         modifier = Modifier.widthIn(max = 240.dp).heightIn(max = 200.dp).clip(RoundedCornerShape(8.dp))
                     )
                 }
@@ -421,7 +423,7 @@ private fun MessageBubble(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(Icons.Default.AttachFile, null, tint = MaterialTheme.colorScheme.primary)
                         Spacer(Modifier.width(4.dp))
-                        Text(message.fileName ?: "Файл", fontSize = 14.sp,
+                        Text(message.fileName ?: stringResource(R.string.msg_file), fontSize = 14.sp,
                             color = MaterialTheme.colorScheme.primary)
                     }
                 }
@@ -433,7 +435,7 @@ private fun MessageBubble(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.align(Alignment.End)
             ) {
-                if (message.isEdited) Text("изм. ", fontSize = 11.sp, color = Color.Gray)
+                if (message.isEdited) Text(stringResource(R.string.edited_label), fontSize = 11.sp, color = Color.Gray)
                 Text(
                     text     = message.createdAt.toHHmm(),
                     fontSize = 11.sp,
@@ -485,7 +487,7 @@ private fun MessageInputBar(
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(onClick = onAttach) {
-                Icon(Icons.Default.AttachFile, "Прикрепить", tint = MaterialTheme.colorScheme.primary)
+                Icon(Icons.Default.AttachFile, stringResource(R.string.cd_attach), tint = MaterialTheme.colorScheme.primary)
             }
             if (isRecording) {
                 Row(
@@ -501,14 +503,14 @@ private fun MessageInputBar(
                             .background(Color.Red)
                     )
                     Spacer(Modifier.width(8.dp))
-                    Text("Запись... отпустите для отправки", fontSize = 13.sp,
+                    Text(stringResource(R.string.recording_hint), fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(0.7f))
                 }
             } else {
                 OutlinedTextField(
                     value         = text,
                     onValueChange = onTextChange,
-                    placeholder   = { Text("Сообщение...") },
+                    placeholder   = { Text(stringResource(R.string.new_message_hint)) },
                     modifier      = Modifier.weight(1f),
                     maxLines      = 5,
                     shape         = RoundedCornerShape(24.dp)
@@ -537,8 +539,8 @@ private fun MessageInputBar(
             Box(modifier = interactiveModifier, contentAlignment = Alignment.Center) {
                 when {
                     isSending -> CircularProgressIndicator(color = Color.White, modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
-                    showMic   -> Icon(Icons.Default.Mic, "Запись голосового", tint = Color.White)
-                    else      -> Icon(Icons.Default.Send, "Отправить", tint = Color.White)
+                    showMic   -> Icon(Icons.Default.Mic, stringResource(R.string.cd_record_voice), tint = Color.White)
+                    else      -> Icon(Icons.Default.Send, stringResource(R.string.send), tint = Color.White)
                 }
             }
         }
@@ -562,7 +564,7 @@ private fun ReplyBar(message: Message, onCancel: () -> Unit) {
                     color = MaterialTheme.colorScheme.onSurface.copy(0.7f))
             }
             IconButton(onClick = onCancel, modifier = Modifier.size(32.dp)) {
-                Icon(Icons.Default.Close, "Отмена", modifier = Modifier.size(18.dp))
+                Icon(Icons.Default.Close, stringResource(R.string.cancel), modifier = Modifier.size(18.dp))
             }
         }
     }
@@ -587,21 +589,21 @@ private fun MessageContextMenu(
                 )
                 HorizontalDivider(Modifier.padding(vertical = 4.dp))
                 TextButton({ onReply(); onDismiss() }, Modifier.fillMaxWidth()) {
-                    Icon(Icons.Default.Reply, null); Spacer(Modifier.width(8.dp)); Text("Ответить")
+                    Icon(Icons.Default.Reply, null); Spacer(Modifier.width(8.dp)); Text(stringResource(R.string.reply))
                 }
                 if (isOwn && !message.isDeleted) {
                     TextButton({ onEdit(); onDismiss() }, Modifier.fillMaxWidth()) {
-                        Icon(Icons.Default.Edit, null); Spacer(Modifier.width(8.dp)); Text("Редактировать")
+                        Icon(Icons.Default.Edit, null); Spacer(Modifier.width(8.dp)); Text(stringResource(R.string.edit))
                     }
                     TextButton({ onDelete() }, Modifier.fillMaxWidth()) {
                         Icon(Icons.Default.Delete, null, tint = MaterialTheme.colorScheme.error)
                         Spacer(Modifier.width(8.dp))
-                        Text("Удалить", color = MaterialTheme.colorScheme.error)
+                        Text(stringResource(R.string.delete), color = MaterialTheme.colorScheme.error)
                     }
                 }
             }
         },
-        confirmButton = { TextButton(onDismiss) { Text("Закрыть") } }
+        confirmButton = { TextButton(onDismiss) { Text(stringResource(R.string.close)) } }
     )
 }
 

@@ -23,9 +23,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import com.whatsmax.R
 import com.whatsmax.presentation.theme.OnlineIndicator
 import com.whatsmax.presentation.theme.WhatsMAXTheme
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
@@ -148,7 +150,7 @@ fun CallScreen(
                 modifier = Modifier.size(16.dp)
             )
             Text(
-                text = if (isVideo) "Видеозвонок" else "Аудиозвонок",
+                text = if (isVideo) stringResource(R.string.cd_video_call) else stringResource(R.string.audio_call),
                 color = Color.White.copy(0.7f),
                 fontSize = 14.sp
             )
@@ -187,12 +189,12 @@ fun CallScreen(
                 Spacer(Modifier.height(8.dp))
                 Text(
                     text = when (state.callStatus) {
-                        CallStatus.CALLING -> "Вызов..."
+                        CallStatus.CALLING -> stringResource(R.string.call_calling)
                         CallStatus.RINGING -> if (state.isIncoming)
-                            "Входящий ${if (isVideo) "видеозвонок" else "звонок"}"
-                        else "Ожидание ответа..."
+                            if (isVideo) stringResource(R.string.call_incoming_video) else stringResource(R.string.call_incoming_audio)
+                        else stringResource(R.string.call_waiting)
                         CallStatus.ONGOING -> state.duration
-                        CallStatus.ENDED   -> "Звонок завершён"
+                        CallStatus.ENDED   -> stringResource(R.string.call_ended)
                     },
                     color = Color.White.copy(0.7f),
                     fontSize = 16.sp
@@ -241,7 +243,7 @@ fun CallScreen(
                     }
                 }
                 Text(
-                    "Вы",
+                    stringResource(R.string.call_you),
                     modifier = Modifier
                         .align(Alignment.BottomStart)
                         .padding(4.dp),
@@ -262,14 +264,14 @@ fun CallScreen(
                 Row(horizontalArrangement = Arrangement.spacedBy(64.dp)) {
                     CallButton(
                         icon    = Icons.Default.CallEnd,
-                        label   = "Отклонить",
+                        label   = stringResource(R.string.call_decline),
                         color   = Color.Red,
                         onClick = { viewModel.declineCall() },
                         large   = true
                     )
                     CallButton(
                         icon    = if (isVideo) Icons.Default.Videocam else Icons.Default.Call,
-                        label   = "Принять",
+                        label   = stringResource(R.string.call_accept),
                         color   = OnlineIndicator,
                         onClick = viewModel::acceptCall,
                         large   = true
@@ -287,13 +289,13 @@ fun CallScreen(
                         ) {
                             CallButton(
                                 icon    = if (state.isCameraOff) Icons.Default.VideocamOff else Icons.Default.Videocam,
-                                label   = if (state.isCameraOff) "Камера выкл." else "Камера вкл.",
+                                label   = if (state.isCameraOff) stringResource(R.string.camera_off) else stringResource(R.string.camera_on),
                                 color   = if (state.isCameraOff) Color.Gray else OnlineIndicator,
                                 onClick = viewModel::toggleCamera
                             )
                             CallButton(
                                 icon    = Icons.Default.Cameraswitch,
-                                label   = "Перевернуть",
+                                label   = stringResource(R.string.flip_camera),
                                 color   = Color.White.copy(0.2f),
                                 onClick = viewModel::switchCamera
                             )
@@ -305,13 +307,13 @@ fun CallScreen(
                     ) {
                         CallButton(
                             icon    = if (state.isMicMuted) Icons.Default.MicOff else Icons.Default.Mic,
-                            label   = if (state.isMicMuted) "Вкл. мик." else "Выкл. мик.",
+                            label   = if (state.isMicMuted) stringResource(R.string.mic_on) else stringResource(R.string.mic_off),
                             color   = if (state.isMicMuted) Color.Gray else Color.White.copy(0.2f),
                             onClick = viewModel::toggleMic
                         )
                         CallButton(
                             icon    = Icons.Default.CallEnd,
-                            label   = "Завершить",
+                            label   = stringResource(R.string.call_end_label),
                             color   = Color.Red,
                             onClick = { viewModel.endCall() },
                             large   = true
@@ -319,7 +321,7 @@ fun CallScreen(
                         if (!isVideo) {
                             CallButton(
                                 icon    = if (state.isSpeakerOn) Icons.Default.VolumeUp else Icons.Default.VolumeOff,
-                                label   = "Динамик",
+                                label   = stringResource(R.string.speaker),
                                 color   = if (state.isSpeakerOn) MaterialTheme.colorScheme.primary else Color.White.copy(0.2f),
                                 onClick = viewModel::toggleSpeaker
                             )

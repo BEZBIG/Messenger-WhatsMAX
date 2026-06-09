@@ -31,10 +31,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.whatsmax.BuildConfig
+import com.whatsmax.R
 import com.whatsmax.domain.model.ChannelComment
 import com.whatsmax.domain.model.ChannelMessage
 import com.whatsmax.domain.model.MessageType
@@ -93,9 +95,9 @@ fun ChannelDetailScreen(
                         )
                         Spacer(Modifier.width(10.dp))
                         Column {
-                            Text(state.channel?.name ?: "Канал", fontWeight = FontWeight.SemiBold)
+                            Text(state.channel?.name ?: stringResource(R.string.channel_default_name), fontWeight = FontWeight.SemiBold)
                             state.channel?.let {
-                                Text("${it.membersCount} подписчиков", fontSize = 12.sp,
+                                Text(stringResource(R.string.members_count, it.membersCount), fontSize = 12.sp,
                                     color = MaterialTheme.colorScheme.onSurface.copy(0.6f))
                             }
                         }
@@ -104,22 +106,22 @@ fun ChannelDetailScreen(
                 actions = {
                     if (isOwner) {
                         IconButton({ viewModel.loadSubscribers(channelId) }) {
-                            Icon(Icons.Default.Group, "Подписчики")
+                            Icon(Icons.Default.Group, stringResource(R.string.cd_subscribers))
                         }
                         IconButton({ showDeleteDialog = true }) {
                             if (state.isDeleting)
                                 CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
                             else
-                                Icon(Icons.Default.DeleteForever, "Удалить канал",
+                                Icon(Icons.Default.DeleteForever, stringResource(R.string.cd_delete_channel),
                                     tint = MaterialTheme.colorScheme.error)
                         }
                     } else if (state.channel != null) {
                         if (state.isLoading) {
                             CircularProgressIndicator(modifier = Modifier.size(20.dp).padding(end = 8.dp), strokeWidth = 2.dp)
                         } else if (state.channel!!.isSubscribed) {
-                            TextButton({ viewModel.unsubscribe(channelId) }) { Text("Отписаться") }
+                            TextButton({ viewModel.unsubscribe(channelId) }) { Text(stringResource(R.string.unsubscribe)) }
                         } else {
-                            Button({ viewModel.subscribe(channelId) }) { Text("Подписаться") }
+                            Button({ viewModel.subscribe(channelId) }) { Text(stringResource(R.string.subscribe)) }
                         }
                     }
                 }
@@ -139,14 +141,14 @@ fun ChannelDetailScreen(
                             ) {
                                 Box(Modifier.size(10.dp).clip(CircleShape).background(Color.Red))
                                 Spacer(Modifier.width(8.dp))
-                                Text("Запись... отпустите для отправки",
+                                Text(stringResource(R.string.recording_hint),
                                     fontSize = 13.sp,
                                     color = MaterialTheme.colorScheme.onSurface.copy(0.7f))
                             }
                         } else {
                             OutlinedTextField(
                                 value = state.postText, onValueChange = viewModel::onPostTextChange,
-                                placeholder = { Text("Написать пост...") },
+                                placeholder = { Text(stringResource(R.string.write_post_hint)) },
                                 modifier = Modifier.weight(1f), maxLines = 4,
                                 shape = RoundedCornerShape(24.dp)
                             )
@@ -189,7 +191,7 @@ fun ChannelDetailScreen(
                         Box(modifier = interactiveModifier, contentAlignment = Alignment.Center) {
                             when {
                                 state.isPosting -> CircularProgressIndicator(modifier = Modifier.size(20.dp), color = Color.White, strokeWidth = 2.dp)
-                                showMic         -> Icon(Icons.Default.Mic, "Запись голосового", tint = Color.White)
+                                showMic         -> Icon(Icons.Default.Mic, stringResource(R.string.cd_record_voice), tint = Color.White)
                                 else            -> Icon(Icons.Default.Send, null, tint = Color.White)
                             }
                         }
@@ -239,15 +241,15 @@ fun ChannelDetailScreen(
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
             icon = { Icon(Icons.Default.DeleteForever, null, tint = MaterialTheme.colorScheme.error) },
-            title = { Text("Удалить канал?") },
-            text = { Text("Это действие нельзя отменить. Все посты и комментарии будут удалены.") },
+            title = { Text(stringResource(R.string.delete_channel_title)) },
+            text = { Text(stringResource(R.string.delete_channel_message)) },
             confirmButton = {
                 Button(
                     onClick = { showDeleteDialog = false; viewModel.deleteChannel(channelId, onBack) },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
-                ) { Text("Удалить") }
+                ) { Text(stringResource(R.string.delete)) }
             },
-            dismissButton = { TextButton({ showDeleteDialog = false }) { Text("Отмена") } }
+            dismissButton = { TextButton({ showDeleteDialog = false }) { Text(stringResource(R.string.cancel)) } }
         )
     }
 
@@ -485,7 +487,7 @@ private fun ChannelMessageCard(
                         )
                         Spacer(Modifier.width(3.dp))
                         Text(
-                            if (msg.commentsCount > 0) "${msg.commentsCount}" else "Комментарии",
+                            if (msg.commentsCount > 0) "${msg.commentsCount}" else stringResource(R.string.comments),
                             fontSize = 12.sp
                         )
                     }
@@ -499,7 +501,7 @@ private fun ChannelMessageCard(
             } else if (comments != null) {
                 HorizontalDivider(Modifier.padding(vertical = 4.dp))
                 if (comments.isEmpty()) {
-                    Text("Нет комментариев", fontSize = 13.sp,
+                    Text(stringResource(R.string.no_comments), fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(0.5f),
                         modifier = Modifier.padding(bottom = 4.dp))
                 } else {
@@ -521,7 +523,7 @@ private fun ChannelMessageCard(
                     OutlinedTextField(
                         value = commentText,
                         onValueChange = onCommentTextChange,
-                        placeholder = { Text("Написать комментарий...", fontSize = 13.sp) },
+                        placeholder = { Text(stringResource(R.string.write_comment_hint), fontSize = 13.sp) },
                         modifier = Modifier.weight(1f),
                         maxLines = 3,
                         shape = RoundedCornerShape(20.dp),
@@ -666,7 +668,7 @@ private fun ChannelEditSheet(
                 .padding(bottom = 32.dp)
         ) {
             Text(
-                "Настройки канала",
+                stringResource(R.string.channel_settings),
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
                 modifier = Modifier.padding(vertical = 12.dp)
@@ -677,7 +679,7 @@ private fun ChannelEditSheet(
             OutlinedTextField(
                 value = name,
                 onValueChange = onNameChange,
-                label = { Text("Название канала") },
+                label = { Text(stringResource(R.string.channel_name_label)) },
                 leadingIcon = { Icon(Icons.Default.Edit, null) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true
@@ -686,7 +688,7 @@ private fun ChannelEditSheet(
             OutlinedTextField(
                 value = description,
                 onValueChange = onDescChange,
-                label = { Text("Описание") },
+                label = { Text(stringResource(R.string.description_label)) },
                 leadingIcon = { Icon(Icons.Default.Info, null) },
                 modifier = Modifier.fillMaxWidth(),
                 maxLines = 4
@@ -700,10 +702,10 @@ private fun ChannelEditSheet(
                 if (isUpdating)
                     CircularProgressIndicator(modifier = Modifier.size(20.dp), color = Color.White, strokeWidth = 2.dp)
                 else
-                    Text("Сохранить")
+                    Text(stringResource(R.string.save))
             }
             TextButton(onClick = onDismiss, modifier = Modifier.fillMaxWidth()) {
-                Text("Отмена")
+                Text(stringResource(R.string.cancel))
             }
         }
     }
@@ -736,22 +738,22 @@ private fun ChannelInfoSheet(
             HorizontalDivider()
             Spacer(Modifier.height(12.dp))
 
-            InfoRow(Icons.Default.Group, "${channel.membersCount} подписчиков")
+            InfoRow(Icons.Default.Group, stringResource(R.string.members_count, channel.membersCount))
             if (!channel.description.isNullOrBlank()) {
                 Spacer(Modifier.height(8.dp))
                 InfoRow(Icons.Default.Info, channel.description)
             }
             InfoRow(
                 Icons.Default.Lock,
-                if (channel.isPublic) "Публичный канал" else "Приватный канал"
+                if (channel.isPublic) stringResource(R.string.public_channel) else stringResource(R.string.private_channel)
             )
             if (channel.createdAt.isNotEmpty()) {
                 Spacer(Modifier.height(8.dp))
-                InfoRow(Icons.Default.CalendarMonth, "Создан: ${channel.createdAt.take(10)}")
+                InfoRow(Icons.Default.CalendarMonth, stringResource(R.string.channel_created, channel.createdAt.take(10)))
             }
             Spacer(Modifier.height(16.dp))
             TextButton(onClick = onDismiss, modifier = Modifier.fillMaxWidth()) {
-                Text("Закрыть")
+                Text(stringResource(R.string.close))
             }
         }
     }
@@ -781,7 +783,7 @@ private fun SubscribersSheet(
     ModalBottomSheet(onDismissRequest = onDismiss) {
         Column(modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp)) {
             Text(
-                "Подписчики (${subscribers.size})",
+                stringResource(R.string.subscribers_count, subscribers.size),
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
@@ -792,7 +794,7 @@ private fun SubscribersSheet(
                     CircularProgressIndicator()
                 }
             } else if (subscribers.isEmpty()) {
-                Text("Нет подписчиков",
+                Text(stringResource(R.string.no_subscribers),
                     modifier = Modifier.padding(16.dp),
                     color = MaterialTheme.colorScheme.onSurface.copy(0.5f))
             } else {

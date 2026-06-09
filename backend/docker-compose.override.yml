@@ -1,0 +1,10 @@
+# docker-compose.override.yml
+# Подхватывается автоматически. Переключает сборку backend на Dockerfile.runtime,
+# который упаковывает заранее собранный на хосте fat-jar (build/libs/whatsmax-backend.jar).
+# Причина: внутри Docker на этой машине рвётся TLS-handshake к maven при сборке Gradle.
+# Workflow:  ./gradlew buildFatJar  →  docker compose up -d
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.runtime

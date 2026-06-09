@@ -29,9 +29,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.compose.ui.res.stringResource
 import androidx.core.content.FileProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.whatsmax.R
 import com.whatsmax.presentation.theme.WhatsMAXTheme
 import java.io.File
 
@@ -101,21 +103,21 @@ fun ProfileScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = { IconButton(onBack) { Icon(Icons.Default.ArrowBack, null) } },
-                title = { Text("Мой профиль") },
+                title = { Text(stringResource(R.string.my_profile)) },
                 actions = {
                     if (state.isEditing) {
                         IconButton(viewModel::saveProfile) {
                             if (state.isSaving)
                                 CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
                             else
-                                Icon(Icons.Default.Check, "Сохранить")
+                                Icon(Icons.Default.Check, stringResource(R.string.save))
                         }
                         IconButton({ viewModel.setEditing(false) }) {
-                            Icon(Icons.Default.Close, "Отмена")
+                            Icon(Icons.Default.Close, stringResource(R.string.cancel))
                         }
                     } else {
                         IconButton({ viewModel.setEditing(true) }) {
-                            Icon(Icons.Default.Edit, "Редактировать")
+                            Icon(Icons.Default.Edit, stringResource(R.string.edit))
                         }
                     }
                 },
@@ -148,7 +150,7 @@ fun ProfileScreen(
                         if (state.user?.avatarUrl != null) {
                             AsyncImage(
                                 model = state.user!!.avatarUrl,
-                                contentDescription = "Аватар",
+                                contentDescription = stringResource(R.string.cd_avatar),
                                 modifier = Modifier.size(96.dp).clip(CircleShape)
                             )
                         } else {
@@ -201,14 +203,14 @@ fun ProfileScreen(
                             )
                             Spacer(Modifier.width(5.dp))
                             Text(
-                                text = "в сети",
+                                text = stringResource(R.string.online),
                                 fontSize = 12.sp,
                                 color = Color.White.copy(alpha = 0.8f)
                             )
                         }
                     } else {
                         Text(
-                            "Редактирование профиля",
+                            stringResource(R.string.editing_profile),
                             fontSize = 16.sp,
                             color = Color.White.copy(alpha = 0.9f),
                             fontWeight = FontWeight.Medium
@@ -231,7 +233,7 @@ fun ProfileScreen(
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             Text(
-                                "ДАННЫЕ ПРОФИЛЯ",
+                                stringResource(R.string.profile_data_section),
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.primary,
@@ -241,7 +243,7 @@ fun ProfileScreen(
                             OutlinedTextField(
                                 value = state.editDisplayName,
                                 onValueChange = viewModel::onEditDisplayNameChange,
-                                label = { Text("Имя") },
+                                label = { Text(stringResource(R.string.name_hint)) },
                                 leadingIcon = { Icon(Icons.Default.Person, null) },
                                 singleLine = true,
                                 modifier = Modifier.fillMaxWidth()
@@ -250,7 +252,7 @@ fun ProfileScreen(
                             OutlinedTextField(
                                 value = state.editUsername,
                                 onValueChange = viewModel::onEditUsernameChange,
-                                label = { Text("Username") },
+                                label = { Text(stringResource(R.string.username_label)) },
                                 leadingIcon = { Icon(Icons.Default.AlternateEmail, null) },
                                 singleLine = true,
                                 modifier = Modifier.fillMaxWidth()
@@ -259,7 +261,7 @@ fun ProfileScreen(
                             OutlinedTextField(
                                 value = state.editBio,
                                 onValueChange = viewModel::onEditBioChange,
-                                label = { Text("О себе") },
+                                label = { Text(stringResource(R.string.about_label)) },
                                 leadingIcon = { Icon(Icons.Default.Notes, null) },
                                 modifier = Modifier.fillMaxWidth(),
                                 maxLines = 4
@@ -275,7 +277,7 @@ fun ProfileScreen(
                         ) {
                             Column(modifier = Modifier.padding(16.dp)) {
                                 Text(
-                                    "О СЕБЕ",
+                                    stringResource(R.string.about_section),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.primary,
@@ -300,7 +302,7 @@ fun ProfileScreen(
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             Text(
-                                "КОНТАКТ",
+                                stringResource(R.string.contact_section),
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.primary,
@@ -331,7 +333,7 @@ fun ProfileScreen(
                 ) {
                     Icon(Icons.Default.Logout, null, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.width(8.dp))
-                    Text("Выйти из аккаунта", fontWeight = FontWeight.Medium)
+                    Text(stringResource(R.string.sign_out), fontWeight = FontWeight.Medium)
                 }
 
                 Spacer(Modifier.height(24.dp))
@@ -343,7 +345,7 @@ fun ProfileScreen(
         AlertDialog(
             onDismissRequest = { showAvatarDialog = false },
             icon = { Icon(Icons.Default.CameraAlt, null) },
-            title = { Text("Фото профиля") },
+            title = { Text(stringResource(R.string.profile_photo_title)) },
             text = {
                 Column {
                     TextButton(
@@ -352,7 +354,7 @@ fun ProfileScreen(
                     ) {
                         Icon(Icons.Default.Photo, null)
                         Spacer(Modifier.width(8.dp))
-                        Text("Выбрать из галереи")
+                        Text(stringResource(R.string.choose_from_gallery))
                     }
                     TextButton(
                         onClick = { showAvatarDialog = false; launchCamera() },
@@ -360,11 +362,11 @@ fun ProfileScreen(
                     ) {
                         Icon(Icons.Default.CameraAlt, null)
                         Spacer(Modifier.width(8.dp))
-                        Text("Сделать фото")
+                        Text(stringResource(R.string.take_photo))
                     }
                 }
             },
-            confirmButton = { TextButton({ showAvatarDialog = false }) { Text("Отмена") } }
+            confirmButton = { TextButton({ showAvatarDialog = false }) { Text(stringResource(R.string.cancel)) } }
         )
     }
 }

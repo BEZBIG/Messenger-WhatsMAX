@@ -12,11 +12,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.whatsmax.R
 import com.whatsmax.presentation.theme.WhatsMAXTheme
 
 @Composable
@@ -39,27 +41,27 @@ fun RegisterScreen(
             .padding(horizontal = 24.dp, vertical = 40.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Создать аккаунт", fontSize = 28.sp, fontWeight = FontWeight.Bold,
+        Text(stringResource(R.string.register_title), fontSize = 28.sp, fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary)
         Spacer(Modifier.height(32.dp))
 
         OutlinedTextField(
             value = state.displayName, onValueChange = viewModel::onDisplayNameChange,
-            label = { Text("Имя") }, leadingIcon = { Icon(Icons.Default.Person, null) },
+            label = { Text(stringResource(R.string.name_hint)) }, leadingIcon = { Icon(Icons.Default.Person, null) },
             singleLine = true, modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(12.dp))
 
         OutlinedTextField(
             value = state.username, onValueChange = viewModel::onUsernameChange,
-            label = { Text("Username (@)") }, leadingIcon = { Icon(Icons.Default.AlternateEmail, null) },
+            label = { Text(stringResource(R.string.username_hint)) }, leadingIcon = { Icon(Icons.Default.AlternateEmail, null) },
             singleLine = true, modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(12.dp))
 
         OutlinedTextField(
             value = state.email, onValueChange = viewModel::onEmailChange,
-            label = { Text("Email") }, leadingIcon = { Icon(Icons.Default.Email, null) },
+            label = { Text(stringResource(R.string.email_hint)) }, leadingIcon = { Icon(Icons.Default.Email, null) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             singleLine = true, modifier = Modifier.fillMaxWidth()
         )
@@ -67,7 +69,7 @@ fun RegisterScreen(
 
         OutlinedTextField(
             value = state.password, onValueChange = viewModel::onPasswordChange,
-            label = { Text("Пароль") }, leadingIcon = { Icon(Icons.Default.Lock, null) },
+            label = { Text(stringResource(R.string.password_hint)) }, leadingIcon = { Icon(Icons.Default.Lock, null) },
             trailingIcon = {
                 IconButton({ passwordVisible = !passwordVisible }) {
                     Icon(if (passwordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility, null)
@@ -81,7 +83,7 @@ fun RegisterScreen(
 
         OutlinedTextField(
             value = state.confirmPassword, onValueChange = viewModel::onConfirmPasswordChange,
-            label = { Text("Подтвердите пароль") }, leadingIcon = { Icon(Icons.Default.Lock, null) },
+            label = { Text(stringResource(R.string.confirm_password_hint)) }, leadingIcon = { Icon(Icons.Default.Lock, null) },
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             singleLine = true, modifier = Modifier.fillMaxWidth(),
@@ -100,11 +102,11 @@ fun RegisterScreen(
             modifier = Modifier.fillMaxWidth().height(50.dp)
         ) {
             if (state.isLoading) CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(24.dp))
-            else Text("Зарегистрироваться", fontSize = 16.sp)
+            else Text(stringResource(R.string.register_btn), fontSize = 16.sp)
         }
 
         Spacer(Modifier.height(16.dp))
-        TextButton(onClick = onNavigateToLogin) { Text("Уже есть аккаунт? Войти") }
+        TextButton(onClick = onNavigateToLogin) { Text(stringResource(R.string.register_have_account)) }
     }
 }
 

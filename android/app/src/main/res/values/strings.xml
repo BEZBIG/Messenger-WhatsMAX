@@ -4,39 +4,159 @@
 -->
 <resources>
     <string name="app_name">WhatsMAX</string>
-    <string name="login_title">Добро пожаловать</string>
-    <string name="login_subtitle">Войдите в WhatsMAX</string>
-    <string name="email_hint">Email</string>
-    <string name="password_hint">Пароль</string>
-    <string name="login_btn">Войти</string>
-    <string name="register_btn">Зарегистрироваться</string>
-    <string name="no_account">Нет аккаунта? </string>
-    <string name="have_account">Уже есть аккаунт? </string>
-    <string name="chats_title">Чаты</string>
-    <string name="channels_title">Каналы</string>
-    <string name="calls_title">Звонки</string>
-    <string name="profile_title">Профиль</string>
-    <string name="new_message_hint">Сообщение...</string>
-    <string name="send_btn">Отправить</string>
-    <string name="loading">Загрузка...</string>
-    <string name="error_network">Нет соединения с сервером</string>
-    <string name="error_auth">Ошибка авторизации</string>
-    <string name="online">в сети</string>
-    <string name="offline">не в сети</string>
-    <string name="typing">печатает...</string>
-    <string name="new_chat">Новый чат</string>
-    <string name="new_group">Новая группа</string>
-    <string name="new_channel">Новый канал</string>
-    <string name="search_hint">Поиск...</string>
-    <string name="call_btn">Позвонить</string>
-    <string name="video_call_btn">Видеозвонок</string>
-    <string name="attach_file">Прикрепить файл</string>
-    <string name="camera">Камера</string>
-    <string name="gallery">Галерея</string>
-    <string name="edit_message">Редактировать</string>
-    <string name="delete_message">Удалить</string>
+
+    <!-- Общие -->
+    <string name="cancel">Отмена</string>
+    <string name="create">Создать</string>
+    <string name="save">Сохранить</string>
+    <string name="close">Закрыть</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Редактировать</string>
     <string name="reply">Ответить</string>
+    <string name="back">Назад</string>
+    <string name="send">Отправить</string>
     <string name="subscribe">Подписаться</string>
     <string name="unsubscribe">Отписаться</string>
+    <string name="online">в сети</string>
+    <string name="offline">не в сети</string>
+    <string name="cd_avatar">Аватар</string>
+    <string name="avatar_of">Аватар %s</string>
+
+    <!-- Вход -->
+    <string name="login_subtitle">Войдите в аккаунт</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Пароль</string>
+    <string name="show_password">Показать пароль</string>
+    <string name="login_btn">Войти</string>
+    <string name="login_no_account">Нет аккаунта? Зарегистрироваться</string>
+
+    <!-- Регистрация -->
+    <string name="register_title">Создать аккаунт</string>
+    <string name="name_hint">Имя</string>
+    <string name="username_hint">Username (@)</string>
+    <string name="confirm_password_hint">Подтвердите пароль</string>
+    <string name="register_btn">Зарегистрироваться</string>
+    <string name="register_have_account">Уже есть аккаунт? Войти</string>
+
+    <!-- Главный экран / список чатов -->
+    <string name="channels_title">Каналы</string>
+    <string name="profile_title">Профиль</string>
+    <string name="new_chat">Новый чат</string>
+    <string name="home_direct_chat">Личный чат</string>
+    <string name="home_group_chat">Групповой чат</string>
+    <string name="home_search_hint">Поиск чатов и пользователей...</string>
+    <string name="chat_default_name">Чат</string>
+    <string name="no_messages">Нет сообщений</string>
+    <string name="message_deleted">Сообщение удалено</string>
+    <string name="msg_call">Звонок</string>
+    <string name="msg_photo">Фото</string>
+    <string name="msg_voice">Голосовое сообщение</string>
+    <string name="msg_audio">Аудио</string>
+    <string name="msg_video">Видео</string>
+    <string name="msg_file">Файл</string>
+    <string name="delete_for_me">Удалить у меня</string>
+    <string name="delete_for_all">Удалить у всех</string>
+    <string name="search_users_hint">Поиск пользователей...</string>
+    <string name="search_min_chars">Введите минимум 2 символа для поиска</string>
+    <string name="users_not_found">Пользователи не найдены</string>
+    <string name="group_name_hint">Название группы</string>
+    <string name="group_members">Участники: %s</string>
+    <string name="add_member_hint">Добавить участника...</string>
+
+    <!-- Чат -->
+    <string name="cd_call">Звонок</string>
+    <string name="cd_video_call">Видеозвонок</string>
+    <string name="typing">печатает...</string>
+    <string name="attach_photo_title">Прикрепить фото</string>
+    <string name="choose_from_gallery">Выбрать из галереи</string>
+    <string name="take_photo">Сделать фото</string>
+    <string name="reply_label">↩ Ответ</string>
+    <string name="cd_image">Изображение</string>
+    <string name="recording_hint">Запись... отпустите для отправки</string>
+    <string name="new_message_hint">Сообщение...</string>
+    <string name="cd_attach">Прикрепить</string>
+    <string name="cd_record_voice">Запись голосового</string>
+    <string name="edited_label">изм. </string>
+
+    <!-- Список каналов -->
+    <string name="cd_create_channel">Создать канал</string>
+    <string name="search_channels_hint">Поиск каналов...</string>
+    <string name="my_channels">Мои каналы</string>
+    <string name="no_channels">Нет каналов</string>
+    <string name="channel_subtitle">@%1$s · %2$d подписчиков</string>
+    <string name="new_channel">Новый канал</string>
+    <string name="handle_hint">@handle</string>
+    <string name="channel_name_hint">Название</string>
+    <string name="channel_desc_hint">Описание (опционально)</string>
+    <string name="public_label">Публичный</string>
+    <string name="private_label">Приватный</string>
+
+    <!-- Лента канала -->
+    <string name="channel_default_name">Канал</string>
     <string name="members_count">%d подписчиков</string>
+    <string name="cd_subscribers">Подписчики</string>
+    <string name="cd_delete_channel">Удалить канал</string>
+    <string name="write_post_hint">Написать пост...</string>
+    <string name="delete_channel_title">Удалить канал?</string>
+    <string name="delete_channel_message">Это действие нельзя отменить. Все посты и комментарии будут удалены.</string>
+    <string name="comments">Комментарии</string>
+    <string name="no_comments">Нет комментариев</string>
+    <string name="write_comment_hint">Написать комментарий...</string>
+    <string name="channel_settings">Настройки канала</string>
+    <string name="channel_name_label">Название канала</string>
+    <string name="description_label">Описание</string>
+    <string name="public_channel">Публичный канал</string>
+    <string name="private_channel">Приватный канал</string>
+    <string name="channel_created">Создан: %s</string>
+    <string name="subscribers_count">Подписчики (%d)</string>
+    <string name="no_subscribers">Нет подписчиков</string>
+
+    <!-- Звонок -->
+    <string name="audio_call">Аудиозвонок</string>
+    <string name="call_calling">Вызов...</string>
+    <string name="call_incoming_video">Входящий видеозвонок</string>
+    <string name="call_incoming_audio">Входящий звонок</string>
+    <string name="call_waiting">Ожидание ответа...</string>
+    <string name="call_ended">Звонок завершён</string>
+    <string name="call_you">Вы</string>
+    <string name="call_decline">Отклонить</string>
+    <string name="call_accept">Принять</string>
+    <string name="camera_off">Камера выкл.</string>
+    <string name="camera_on">Камера вкл.</string>
+    <string name="flip_camera">Перевернуть</string>
+    <string name="mic_on">Вкл. мик.</string>
+    <string name="mic_off">Выкл. мик.</string>
+    <string name="call_end_label">Завершить</string>
+    <string name="speaker">Динамик</string>
+
+    <!-- Свой профиль -->
+    <string name="my_profile">Мой профиль</string>
+    <string name="editing_profile">Редактирование профиля</string>
+    <string name="profile_data_section">ДАННЫЕ ПРОФИЛЯ</string>
+    <string name="username_label">Username</string>
+    <string name="about_label">О себе</string>
+    <string name="about_section">О СЕБЕ</string>
+    <string name="contact_section">КОНТАКТ</string>
+    <string name="profile_photo_title">Фото профиля</string>
+    <string name="sign_out">Выйти из аккаунта</string>
+
+    <!-- Профиль пользователя -->
+    <string name="action_message">Написать</string>
+    <string name="call_btn">Позвонить</string>
+    <string name="action_video">Видео</string>
+    <string name="block">Заблокировать</string>
+    <string name="unblock">Разблокировать</string>
+    <string name="contact_label">Контакт</string>
+    <string name="online_now">Сейчас в сети</string>
+    <string name="last_seen_recently">Был(а) недавно</string>
+    <string name="user_blocked">Пользователь заблокирован</string>
+    <string name="user_not_found">Пользователь не найден</string>
+    <string name="block_q">Заблокировать?</string>
+    <string name="unblock_q">Разблокировать?</string>
+    <string name="block_message">%s не сможет писать вам сообщения и видеть ваш профиль.</string>
+    <string name="unblock_message">%s сможет снова писать вам сообщения.</string>
+
+    <!-- Голосовые сообщения -->
+    <string name="pause">Пауза</string>
+    <string name="play">Воспроизвести</string>
 </resources>
